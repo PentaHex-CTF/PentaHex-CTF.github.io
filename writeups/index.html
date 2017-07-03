@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="/favicon.ico" type="image/x-icon">
+		
+		<meta charset="utf-8">
+		<title>PentaHex CTF Team</title>
+		
+		<style>
+			body {
+				background-color:white;
+				text-align: center;
+				font-family: "Ubuntu";
+			}
+			#menu {
+				color: white;
+				background-color:black;
+				padding: 10px;
+			}
+			#menu td a {
+				color: white;	
+				text-decoration-line: none;
+			} 
+			#writeup {
+				border-collapse: collapse;
+				width: 50%;
+    			margin: 0 auto;				
+			}
+
+			#writeup thead tr th, #writeup tbody tr td {
+				padding: 8px;
+				text-align: left;
+				border-bottom: 1px solid #ddd;
+			}
+			#tableContainer-1 {
+				height: 100%;
+				width: 100%;
+				display: table;
+			  }
+			#tableContainer-2 {
+				vertical-align: middle;
+				display: table-cell;
+				height: 100%;
+			  }
+			#search[type="text"]
+			{
+				font-family: "Ubuntu";
+			}
+		</style>
+	</head>
+	<body>
+		<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+		
+		<h1>PentaHex</h1>
+		<table style='width:100%;' id="menu">
+			<tr>
+				<td></td>
+				<td style='width:110px'>
+					<a href="/index.html">Home</a>
+				</td>
+				<td style='width:110px'>
+					<a href="/writeups/index.html">Writeups</a>
+				</td>
+				<td style='width:110px'>
+					<a href="/tools/index.html">Tools</a>
+				</td>
+				<td style='width:110px'>
+					<a href="/resources/index.html">Resources</a>
+				</td>
+				<td style='width:110px'>
+					<a href="/about.html">About</a>
+				</td>
+				<td></td>
+			</tr>
+		</table>
+		<p>
+		<div id="tableContainer-1">
+			<div id="tableContainer-2">
+		<input style="align:left;" type="text" id="search" placeholder="Type to search">
+		<table id="writeup">
+			
+			<thead>
+				<tr>
+					<th>CTF</th>
+					<th>Problem Name</th>
+					<th>Type</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><a href="#">TAMUctf</a></td>
+					<td>Fancy Bear</td>
+					<td>Reversing</td>
+				</tr>
+				<tr>
+					<td><a href="#">TAMUctf</a></td>
+					<td>LUL Bear</td>
+					<td>Reversing</td>
+				</tr>
+			</tbody>
+		</table>
+			</div>
+		</div>
+		
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script>
+var $rows = $('#writeup tbody tr');
+$('#search').keyup(function() {
+    var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+    
+    $rows.show().filter(function() {
+        var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+        return !~text.indexOf(val);
+    }).hide();
+});		
+		</script>
+	</body>
+</html>
