@@ -14,11 +14,15 @@
 				text-align: center;
 				font-family: "Ubuntu";
 			}
-			table {
+			#menu {
 				color: white;
 				background-color:black;
 				padding: 10px;
 			}
+			#menu td a {
+				color: white;	
+				text-decoration-line: none;
+			} 
 		</style>
 		
 	</head>
@@ -26,28 +30,28 @@
 		<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 		
 		<h1>PentaHex</h1>
-		<table style='width:100%;'>
+		<table style='width:100%;' id="menu">
 			<tr>
-				<td style='width:30%;'></td>
-				<td>
-					Home
+				<td></td>
+				<td style='width:110px'>
+					<a href="/index.html">Home</a>
 				</td>
-				<td>
-					Writeups
+				<td style='width:110px'>
+					<a href="/writeups/index.html">Writeups</a>
 				</td>
-				<td>
-					Tools
+				<td style='width:110px'>
+					<a href="/tools/index.html">Tools</a>
 				</td>
-				<td>
-					Resources
+				<td style='width:110px'>
+					<a href="/resources/index.html">Resources</a>
 				</td>
-				<td>
-					About
+				<td style='width:110px'>
+					<a href="/about.html">About</a>
 				</td>
-				<td style='width:30%;'></td>
+				<td></td>
 			</tr>
 		</table>
-		<p>Welcome to the PentaHex website!<br><br>This website will be home to CTF writeups, basic tools, and many other resources!</p>
-		
+		<p>PentaHex is a CTF team located in THE UNITED STATES OF THE DANKEST AMERICA. We participate in a variety of CTF competitions.<br></p>
+		<p><a href="https://ctftime.org/team/39346">CTFTime</a></p>
 	</body>
 </html>
