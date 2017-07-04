@@ -2,67 +2,21 @@
 <html lang="en-US">
 	<head>
 		
-		<link rel="icon" href="/favicon.png">
-		
 		<meta charset="utf-8">
 		<title>PentaHex CTF Team</title>
 		
-		<style>
-			body {
-				text-align: center;
-				font-family: "Ubuntu";
-				background-color: #FFFFFF;
-				background-image: url("https://www.transparenttextures.com/patterns/shattered-dark.png");
-			}
-			#menu {
-				color: white;
-				background-color:black;
-				padding: 10px;
-			}
-			a {
-				color: dimgray;	
-				text-decoration-line: none;
-			}
-			#menu td a {
-				color: white;	
-				text-decoration-line: none;
-			} 
-		</style>
-		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script> 
+			$(function(){
+				$("#main").load("/main.html");
+			});
+		</script>
 	</head>
 	<body>
-		<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-		
-		<h1>PentaHex</h1>
-		<table style='width:100%;' id="menu">
-			<tr>
-				<td></td>
-				<td style='width:110px'>
-					<a href="/index.html">Home</a>
-				</td>
-				<td style='width:110px'>
-					<a href="/writeups/index.html">Writeups</a>
-				</td>
-				<td style='width:110px'>
-					<a href="/tools/index.html">Tools</a>
-				</td>
-				<td style='width:110px'>
-					<a href="/resources/index.html">Resources</a>
-				</td>
-				<td style='width:110px'>
-					<a href="/about.html">About</a>
-				</td>
-				<td></td>
-			</tr>
-		</table>
+		<div id="main"></div>
 		<p>Information about us can be found below.<br></p>
 		<hr>
-		<p>Bio:</p>
 		<p>CTF Time: <a href="https://ctftime.org/team/39346">https://ctftime.org/team/39346</a></p>
 		<p>PentaHex email: <a href="mailto:pentahexctf@gmail.com">pentahexctf@gmail.com</a></p>
-		<hr>
-		<p>Notable Achievements:</p>
-		<p>Our team placed 23rd in PACTF 2017</p>
-		<a href="https://2017.pactf.com/winners/">PACTF LeaderBoard</a>
 	</body>
 </html>
