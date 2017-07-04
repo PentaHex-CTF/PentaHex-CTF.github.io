@@ -2,17 +2,15 @@
 <html lang="en-US">
 	<head>
 		
-		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-		<link rel="icon" href="/favicon.ico" type="image/x-icon">
-		
 		<meta charset="utf-8">
 		<title>PentaHex CTF Team</title>
 		
 		<style>
 			body {
-				background-color:white;
 				text-align: center;
 				font-family: "Ubuntu";
+				background-color: #FFFFFF;
+				background-image: url("https://www.transparenttextures.com/patterns/shattered-dark.png");
 			}
 			#menu {
 				color: white;
@@ -25,14 +23,15 @@
 			} 
 			#writeup {
 				border-collapse: collapse;
-				width: 50%;
-    			margin: 0 auto;				
+				width: 600px;
+    			margin: 0 auto;	
+				background-color: white;
 			}
 
 			#writeup thead tr th, #writeup tbody tr td {
 				padding: 8px;
-				text-align: left;
-				border-bottom: 1px solid #ddd;
+				text-align: center;
+				border-bottom: 1px solid #AAA;
 			}
 			#tableContainer-1 {
 				height: 100%;
@@ -43,6 +42,7 @@
 				vertical-align: middle;
 				display: table-cell;
 				height: 100%;
+				width: 600px;
 			  }
 			#search[type="text"]
 			{
@@ -78,14 +78,15 @@
 		<p>
 		<div id="tableContainer-1">
 			<div id="tableContainer-2">
-		<input style="align:left;" type="text" id="search" placeholder="Type to search">
+		<input style="align:left;margin-bottom:10px;padding:3px;" type="text" id="search" placeholder="Type to search">
+				<br>
 		<table id="writeup">
 			
 			<thead>
 				<tr>
 					<th>CTF</th>
-					<th>Problem Name</th>
-					<th>Type</th>
+					<th>Problem</th>
+					<th style="width=50px;">Type</th>
 				</tr>
 			</thead>
 			<tbody>
