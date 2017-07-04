@@ -5,51 +5,15 @@
 		<meta charset="utf-8">
 		<title>PentaHex CTF Team</title>
 		
-		<link rel="icon" href="/favicon.png">
-		
-		<style>
-			body {
-				text-align: center;
-				font-family: "Ubuntu";
-				background: url("https://www.transparenttextures.com/patterns/shattered-dark.png");
-			}
-			#menu {
-				color: white;
-				background-color:black;
-				padding: 10px;
-			}
-			#menu td a {
-				color: white;	
-				text-decoration-line: none;
-			}
-		</style>
-		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script> 
+			$(function(){
+				$("#main").load("/main.html");
+			});
+		</script>
 	</head>
 	<body>
-		<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-		
-		<h1>PentaHex</h1>
-		<table style='width:100%;' id="menu">
-			<tr>
-				<td></td>
-				<td style='width:110px'>
-					<a href="/index.html">Home</a>
-				</td>
-				<td style='width:110px'>
-					<a href="/writeups/index.html">Writeups</a>
-				</td>
-				<td style='width:110px'>
-					<a href="/tools/index.html">Tools</a>
-				</td>
-				<td style='width:110px'>
-					<a href="/resources/index.html">Resources</a>
-				</td>
-				<td style='width:110px'>
-					<a href="/about.html">About</a>
-				</td>
-				<td></td>
-			</tr>
-		</table>
+		<div id="main"></div>
 		<p>This is the official PentaHex CTF team website!<br><br>Check out our different writeups, tools, and other resources!<br><br>Feel free to contact us. We have more information on our "About" page.</p>
 		<hr>
 		<iframe width="560" height="315" src="https://www.youtube.com/embed/8ev9ZX9J45A" frameborder="0" allowfullscreen></iframe>
