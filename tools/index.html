@@ -22,9 +22,39 @@
 			#menu td a {
 				color: white;	
 				text-decoration-line: none;
+			} 
+			#tool {
+				border-collapse: collapse;
+				width: 600px;
+    			margin: 0 auto;	
+				background-color: white;
+			}
+
+			#tool thead tr th, #tool tbody tr td {
+				padding: 8px;
+				text-align: center;
+				border-bottom: 1px solid #AAA;
+			}
+			#tool tbody tr a {
+				color: dimgray;	
+				text-decoration-line: none;
+			}
+			#tableContainer-1 {
+				height: 100%;
+				width: 100%;
+				display: table;
+			  }
+			#tableContainer-2 {
+				vertical-align: middle;
+				display: table-cell;
+				height: 100%;
+				width: 600px;
+			  }
+			#search[type="text"]
+			{
+				font-family: "Ubuntu";
 			}
 		</style>
-		
 	</head>
 	<body>
 		<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
@@ -51,8 +81,44 @@
 				<td></td>
 			</tr>
 		</table>
-		<p>Use some tools created by PentaHex.</p>
-		<h2>Caesar cipher</h2>
-		<p>The good old Caesar cipher, brute forced blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah.</p>
+		<p>
+		<div id="tableContainer-1">
+			<div id="tableContainer-2">
+		<input style="align:left;margin-bottom:10px;padding:3px;" type="text" id="search" placeholder="Type to search">
+				<br>
+		<table id="tool">
+			
+			<thead>
+				<tr>
+					<th>Tool</th>
+					<th>Use</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><a href="#">Caesar cipher</a></td>
+					<td>Brute forces all 26 options for the Caesar cipher</td>
+				</tr>
+				<tr>
+					<td><a href="#">Onion Caesar cipher</a></td>
+					<td>Brute forces all options for Caesar cipher with the shift changing per letter</td>
+				</tr>
+			</tbody>
+		</table>
+			</div>
+		</div>
+		
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script>
+var $rows = $('#tool tbody tr');
+$('#search').keyup(function() {
+    var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+    
+    $rows.show().filter(function() {
+        var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+        return !~text.indexOf(val);
+    }).hide();
+});		
+		</script>
 	</body>
 </html>
