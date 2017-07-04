@@ -5,46 +5,35 @@
 		<meta charset="utf-8">
 		<title>PentaHex CTF Team</title>
 		
-		<link rel="icon" href="/favicon.png">
-		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script> 
+			$(function(){
+				$("#main").load("/main.html");
+			});
+		</script>
 		<style>
-			body {
-				text-align: center;
-				font-family: "Ubuntu";
-				background-color: #FFFFFF;
-				background-image: url("https://www.transparenttextures.com/patterns/shattered-dark.png");
-			}
-			#menu {
-				color: white;
-				background-color:black;
-				padding: 10px;
-			}
-			#menu td a {
-				color: white;	
-				text-decoration-line: none;
-			} 
-			#resource {
+			#content {
 				border-collapse: collapse;
 				width: 600px;
     			margin: 0 auto;	
 				background-color: white;
 			}
 
-			#resource thead tr th, #resource tbody tr td {
+			#content thead tr th, #content tbody tr td {
 				padding: 8px;
 				text-align: center;
 				border-bottom: 1px solid #AAA;
 			}
-			#resource tbody tr a {
+			#content tbody tr a {
 				color: dimgray;	
 				text-decoration-line: none;
 			}
-			#tableContainer-1 {
+			#container1 {
 				height: 100%;
 				width: 100%;
 				display: table;
 			  }
-			#tableContainer-2 {
+			#container2 {
 				vertical-align: middle;
 				display: table-cell;
 				height: 100%;
@@ -57,83 +46,39 @@
 		</style>
 	</head>
 	<body>
-		<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-		
-		<h1>PentaHex</h1>
-		<table style='width:100%;' id="menu">
-			<tr>
-				<td></td>
-				<td style='width:110px'>
-					<a href="/index.html">Home</a>
-				</td>
-				<td style='width:110px'>
-					<a href="/writeups/index.html">Writeups</a>
-				</td>
-				<td style='width:110px'>
-					<a href="/tools/index.html">Tools</a>
-				</td>
-				<td style='width:110px'>
-					<a href="/resources/index.html">Resources</a>
-				</td>
-				<td style='width:110px'>
-					<a href="/about.html">About</a>
-				</td>
-				<td></td>
-			</tr>
-		</table>
-		<p>
-		<div id="tableContainer-1">
-			<div id="tableContainer-2">
+		<div id="main"></div>
+		<p>This is the official PentaHex CTF team website!<br><br>Check out our different writeups, tools, and other resources!</p>
+		<div id="container1">
+			<div id="container2">
 		<input style="align:left;margin-bottom:10px;padding:3px;" type="text" id="search" placeholder="Type to search">
 				<br>
-		<table id="resource">
+		<table id="content">
 			
 			<thead>
 				<tr>
 					<th>Resource</th>
 					<th>Use</th>
 					<th>Ext. Link</th>
-					<th>Type</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
 					<td><a href="#">EasyCTF</a></td>
-					<td>High School CTF designed as an introduction to the game.</td>
+					<td>A great CTF to start out or get interested.</td>
 					<td><a href="https://www.easyctf.com/">easyctf.com</a></td>
-					<td>CTF</td>
 				</tr>
 				<tr>
 					<td><a href="#">pwnable.kr</a></td>
-					<td>One of the largest pwn repositories on the internet. Difficulty ranges from simple to professional.</td>
+					<td>Lots of good practice pwn problems.</td>
 					<td><a href="http://pwnable.kr/">pwnable.kr</a></td>
-					<td>Practice Site</td>
 				</tr>
-				<tr>
-					<td><a href="#">RPISEC</a></td>
-					<td>CTF team that author's writeups and is based at Rensselaer Polytechnic Institute.</td>
-					<td><a href="https://rpis.ec/">rpis.ec</a></td>
-					<td>Competitor</td>
-				</tr>
-				<tr>
-					<td><a href="#">legitbs</a></td>
-					<td>On-site CTF that is commomly regarded as one of the most competitive CTFs that exist</td>
-					<td><a href="https://legitbs.net/">legitbs.net</a></td>
-					<td>CTF</td>
-				</tr>
-				<tr>
-					<td><a href="#">ghostintheshellcode</a></td>
-					<td>Annual CTF that takes place at the ShmooCon Hacker Convention</td>
-					<td><a href="http://ghostintheshellcode.com/">ghostintheshellcode.com</a></td>
-						
 			</tbody>
 		</table>
 			</div>
 		</div>
 		
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script>
-var $rows = $('#resource tbody tr');
+var $rows = $('#content tbody tr');
 $('#search').keyup(function() {
     var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
     
