@@ -6,47 +6,41 @@
 		<title>PentaHex CTF Team</title>
 		
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<script> 
-			$(function(){
-				$("#main").load("/main.html");
-			});
-		</script>
-		<style>
-			#content {
-				border-collapse: collapse;
-				width: 600px;
-    			margin: 0 auto;	
-				background-color: white;
-			}
-
-			#content thead tr th, #content tbody tr td {
-				padding: 8px;
-				text-align: center;
-				border-bottom: 1px solid #AAA;
-			}
-			#content tbody tr a {
-				color: dimgray;	
-				text-decoration-line: none;
-			}
-			#container1 {
-				height: 100%;
-				width: 100%;
-				display: table;
-			  }
-			#container2 {
-				vertical-align: middle;
-				display: table-cell;
-				height: 100%;
-				width: 600px;
-			  }
-			#search[type="text"]
-			{
-				font-family: "Ubuntu";
-			}
-		</style>
+		<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Squada+One" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Share+Tech" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="/main.css">
+		<link rel="shortcut icon" type="image/png" href="/images/favicon.png"/>
+		
 	</head>
 	<body>
-		<div id="main"></div>
+		
+		<h1>PentaHex</h1>
+		<table style='width:100%;' id="menu">
+			<tr>
+				<td></td>
+				<td style='width:75px'>
+					<a href="/">HOME</a>
+				</td>
+				<td style='width:105px'>
+					<a href="/writeups/">WRITEUPS</a>
+				</td>
+				<td style='width:80px'>
+					<a href="/tools/">TOOLS</a>
+				</td>
+				<td style='width:115px'>
+					<a href="/resources/">RESOURCES</a>
+				</td>
+				<td style='width:110px'>
+					<a href="/tutorials/">TUTORIALS</a>
+				</td>
+				<td style='width:85px'>
+					<a href="/about.html">ABOUT</a>
+				</td>
+				<td></td>
+			</tr>
+		</table>
+		
 		<div id="container1">
 			<div id="container2">
 		<input style="align:left;margin-bottom:10px;padding:3px;" type="text" id="search" placeholder="Type to search">
