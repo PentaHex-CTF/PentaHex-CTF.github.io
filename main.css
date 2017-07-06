@@ -35,27 +35,38 @@ a {
 	margin: 0 auto;	
 	background-color: white;
 }
-
-#content thead tr th, #content tbody tr td {
+#content thead tr th, #content tbody tr td, #content_w thead tr th, #content_w tbody tr td {
 	padding: 8px;
 	text-align: center;
 	border-bottom: 1px solid #AAA;
 }
-#content tbody tr a {
+#content tbody tr a, #content_w tbody tr a {
 	color: dimgray;	
 	text-decoration-line: none;
 }
-#container1 {
+#container1, #container1_w {
 	height: 100%;
 	width: 100%;
 	display: table;
-  }
+}
 #container2 {
 	vertical-align: middle;
 	display: table-cell;
 	height: 100%;
 	width: 600px;
-  }
+}
+#content_w {
+	border-collapse: collapse;
+	width: 900px;
+	margin: 0 auto;	
+	background-color: white;
+}
+#container2_w {
+	vertical-align: middle;
+	display: table-cell;
+	height: 100%;
+	width: 900px;
+}
 #search[type="text"]
 {
 	font-family: "Ubuntu";
