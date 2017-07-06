@@ -1,0 +1,62 @@
+body {
+	text-align: center;
+	font-family: "Ubuntu";
+	background: url("https://www.transparenttextures.com/patterns/shattered-dark.png");
+}
+h1,h2,h3 {
+	font-family: "Squada One";
+	font-size: 300%;
+	margin: 10px;
+}
+.code {
+	font-family: "Share Tech";
+}
+#menu {
+	color: white;
+	background: rgba(0, 0, 0, 0.7);
+	padding: 10px;
+	margin-bottom: 10px;
+}
+#menu td a {
+	color: white;
+	font-weight: bold;
+	text-decoration-line: none;
+}
+#header {
+	height:102.438px;
+}
+a {
+	color: #EEE;	
+	text-decoration-line: none;
+}
+#content {
+	border-collapse: collapse;
+	width: 600px;
+	margin: 0 auto;	
+	background-color: white;
+}
+
+#content thead tr th, #content tbody tr td {
+	padding: 8px;
+	text-align: center;
+	border-bottom: 1px solid #AAA;
+}
+#content tbody tr a {
+	color: dimgray;	
+	text-decoration-line: none;
+}
+#container1 {
+	height: 100%;
+	width: 100%;
+	display: table;
+  }
+#container2 {
+	vertical-align: middle;
+	display: table-cell;
+	height: 100%;
+	width: 600px;
+  }
+#search[type="text"]
+{
+	font-family: "Ubuntu";
+}
