@@ -3,9 +3,17 @@ body {
 	font-family: "Ubuntu";
 	background: url("https://www.transparenttextures.com/patterns/shattered-dark.png");
 }
-h1,h2,h3 {
-	font-family: "Squada One";
+h1 {
 	font-size: 300%;
+}
+h2 {
+	font-size: 250%;
+}
+h3 {
+	font-size: 180%;
+}
+h1,h2,h3,h4 {
+	font-family: "Squada One";
 	margin: 10px;
 }
 .code {
@@ -13,7 +21,7 @@ h1,h2,h3 {
 }
 #menu {
 	color: white;
-	background: rgba(0, 0, 0, 0.7);
+	background: rgb(0, 0, 0, 0.7);
 	padding: 10px;
 	margin-bottom: 10px;
 }
