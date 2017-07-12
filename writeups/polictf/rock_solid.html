@@ -46,9 +46,10 @@
 		
 		<h2>Rock Solid Cryptography (33) - Crypto</h2>
 		<hr>
-		
+		<p>We are given a jpg <a href="/downloads/writeups/polictf/rocksolid.jpg">file<a/> and coordinates: 7º 2' 34.46" W 54º 41' 54.28" N</p>
+		<hr>
 		<p>This problem was really just checking if you could figure out which cipher it was. I did spend a bit going through a bunch of image stegonography tricks before realizing the image itself supposed to be decoded. A search for "cipher with horizontal and vertical lines" had the Ogham cipher as the first result<br><br>We could either use the dCode, or <a href="http://www.omniglot.com/writing/ogham.htm">this Ogham alphabet key</a>. In the image given, the top is the start, but we will need to rotate it so that the left is the start. Once that is done, it's a simple matter of just looking at each group of lines and seeing what they represent. The flag is all caps:</p>
-		<h3>NOTUNICODECOMPATIBLE</h3>
+		<h3 class="code">NOTUNICODECOMPATIBLE</h3>
 			
 		</div>
 		</div>
