@@ -29,6 +29,7 @@ h1,h2,h3,h4 {
 	color: white;
 	font-weight: bold;
 	text-decoration-line: none;
+	text-decoration: none;
 }
 #header {
 	height:102.438px;
@@ -36,6 +37,7 @@ h1,h2,h3,h4 {
 a {
 	color: #EEE;	
 	text-decoration-line: none;
+	text-decoration: none;
 }
 #content {
 	border-collapse: collapse;
