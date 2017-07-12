@@ -62,6 +62,8 @@ a {
 	height: 100%;
 	width: 600px;
     margin: auto;
+    padding: 10px;
+    background: #DDD;
 }
 #content_w {
 	border-collapse: collapse;
