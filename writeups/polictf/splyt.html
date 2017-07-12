@@ -55,12 +55,12 @@
 			<p>We know the string starts with "flag" or "FLAG." In the end, you don't need to know any of the technical details. I noticed that the difference between the second number was 6 more than the first, and l is 6 letters after f. In fact, all four of the first letters follow this pattern.</p>
 			<p>So now, we can find all the letters because we know "a" is 21, and all the other letters will be relative to that.</p>
 			<p>We have the following y array in the challenge.json:<br><div class='code'>[26, 32, 21, 27, 47, 38, 230, 41, 39, 228, 34, 27, 19, 38, 231, 34, 24, 227, 33, 19, 228, 39, 19, 34, 227, 40, 19, 26, 41, 34, 49, 189]</div></p>
-			<p>Since we know the first four letters are "flag," we can get the following string:<br><div>flag{r?us?ng?r?nd?m??s?n?t?fun??</div></p>
-			<p>We're seeing that 19 a lot, so we can assume that it's going to be either a space or an underscore, but since this is a flag, probably an underscore:<br>flag{r?us?ng_r?nd?m_?s_n?t_fun??</p>
-			<p>Now a lot of the places we don't have yet could be numbers. For example, the "o" in not could be replaced by a "0." If that's true, 227 corresponds to "0" and we can figure out the rest of the numbers:<br>flag{r3us1ng_r4nd0m_1s_n0t_fun??<p>
+			<p>Since we know the first four letters are "flag," we can get the following string:<br><div class='code'>flag{r?us?ng?r?nd?m??s?n?t?fun??</div></p>
+			<p>We're seeing that 19 a lot, so we can assume that it's going to be either a space or an underscore, but since this is a flag, probably an underscore:<br><div class='code'>flag{r?us?ng_r?nd?m_?s_n?t_fun??</div></p>
+			<p>Now a lot of the places we don't have yet could be numbers. For example, the "o" in not could be replaced by a "0." If that's true, 227 corresponds to "0" and we can figure out the rest of the numbers:<br><div class='code'>flag{r3us1ng_r4nd0m_1s_n0t_fun??</div><p>
 			<p>An finally, we would think the last character is the bracket, but we want a number next to 47, so 48, the second to last number corresponds to a "}."</p>
 			
-			<h3>flag{r3us1ng_r4nd0m_1s_n0t_fun}</h3>
+			<h3 class='code'>flag{r3us1ng_r4nd0m_1s_n0t_fun}</h3>
 		
 		</div>
 		</div>
