@@ -1,5 +1,5 @@
 body {
-	text-align: center;
+	text-align: left;
 	font-family: "Ubuntu";
 	background: url("https://www.transparenttextures.com/patterns/shattered-dark.png");
 }
@@ -15,6 +15,7 @@ h3 {
 h1,h2,h3,h4 {
 	font-family: "Squada One";
 	margin: 10px;
+	text-align:center;
 }
 .code {
 	font-family: "Share Tech";
@@ -24,6 +25,7 @@ h1,h2,h3,h4 {
 	background: rgba(0, 0, 0, 0.7);
 	padding: 10px;
 	margin-bottom: 10px;
+	text-align:center;
 }
 #menu td a {
 	color: white;
