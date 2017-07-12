@@ -66,6 +66,8 @@ a {
 	width: 600px;
     margin: auto;
     padding: 10px;
+	padding-left:20px;
+	padding-right:20px;
     background: #DDD;
 }
 #content_w {
