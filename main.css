@@ -52,7 +52,6 @@ a {
 }
 #content tbody tr a {
 	color: dimgray;	
-	text-decoration-line: none;
 }
 #container1 {
 	height: 100%;
@@ -61,9 +60,9 @@ a {
 #container2 {
 	height: 100%;
 	width: 600px;
-    margin: auto;
-    padding: 10px;
-    background: #DDD;
+    	margin: auto;
+    	padding: 10px;
+    	background: #DDD;
 }
 #content_w {
 	border-collapse: collapse;
@@ -78,7 +77,6 @@ a {
 }
 #content_w tbody tr a {
 	color: dimgray;	
-	text-decoration-line: none;
 }
 #container1_w {
 	height: 100%;
@@ -87,7 +85,9 @@ a {
 #container2_w {
 	height: 100%;
 	width: 900px;
-	margin:auto;
+    	margin: auto;
+    	padding: 10px;
+    	background: #DDD;
 }
 #search[type="text"]
 {
