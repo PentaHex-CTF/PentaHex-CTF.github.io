@@ -57,13 +57,11 @@ a {
 #container1 {
 	height: 100%;
 	width: 100%;
-	display: table;
 }
 #container2 {
-	vertical-align: middle;
-	display: table-cell;
 	height: 100%;
 	width: 600px;
+    margin: auto;
 }
 #content_w {
 	border-collapse: collapse;
@@ -83,13 +81,11 @@ a {
 #container1_w {
 	height: 100%;
 	width: 100%;
-	display: table;
 }
 #container2_w {
-	vertical-align: middle;
-	display: table-cell;
 	height: 100%;
 	width: 900px;
+	margin:auto;
 }
 #search[type="text"]
 {
