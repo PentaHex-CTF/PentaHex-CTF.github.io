@@ -91,13 +91,17 @@ a {
 #container2_w {
 	height: 100%;
 	width: 900px;
-    margin: auto;
-    padding: 10px;
+	margin: auto;
+	padding: 10px;
 	padding-left:20px;
 	padding-right:20px;
-    background: #DDD;
+	background: #DDD;
 }
 #search[type="text"]
 {
 	font-family: "Ubuntu";
+}
+#button {
+	padding: 7px;
+	color: #3D7;
 }
