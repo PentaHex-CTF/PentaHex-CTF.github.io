@@ -385,6 +385,7 @@ $('#search').keyup(function() {
     
     $rows.show().filter(function() {
         var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+	alert (~text.indexOf(val));
         return !~text.indexOf(val);
     }).hide();
 });		
