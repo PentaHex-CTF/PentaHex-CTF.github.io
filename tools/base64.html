@@ -52,8 +52,9 @@
             
             <br>
             
-            <input id="button" type="button" value="DECODE" onclick="update('encode');" />
-            <input id="button" type="button" value="ENCODE" onclick="update('decode');" />
+            <input class="button" type="button" value="DECODE" onclick="update('encode');" />
+            <input class="button" type="button" value="ENCODE" onclick="update('decode');" />
+            REPEAT: <input class="button" style="width:30px;padding:8px;" min="1" max="99" type="number">
             
             <p id="output" class="code"></p>
 
@@ -64,13 +65,25 @@
         function update(action) {
             var input = document.getElementById("input").value;
             var output = "";
-            if (action == 'decode')
-            {
-                output = btoa(input);
+            
+            if (document.getElementById("input").value < 1) {
+                document.getElementById("input").value = 1;
+            } else if (document.getElementById("input").value > 99) {
+                document.getElementById("input").value = 99;
             }
-            else if (action == 'encode' )
-            {
-                output = atob(input);
+            
+            var loopNum = document.getElementById("input").value;
+            
+            for (var i = 0; i < loopNum; i ++) {
+                if (action == 'decode')
+                {
+                    output += i + ": " + btoa(input);
+                }
+                else if (action == 'encode' )
+                {
+                    output += i + ": " + atob(input);
+                }
+                output += "<br>"
             }
             document.getElementById('output').innerHTML = output;
         }
