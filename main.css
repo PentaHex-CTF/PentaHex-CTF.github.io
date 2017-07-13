@@ -102,7 +102,9 @@ a {
 	font-family: "Ubuntu";
 }
 #button {
-	padding: 7px;
-	background-color: #D37;
+	padding: 12px 28px;
+	background-color: #F33;
+	border-radius: 4px;
 	color: white;
+	font-size: 16px;
 }
