@@ -101,7 +101,7 @@ a {
 {
 	font-family: "Ubuntu";
 }
-#button {
+.button {
 	padding: 8px 18px;
 	background-color: #F33;
 	border-radius: 4px;
@@ -109,7 +109,7 @@ a {
 	font-size: 12px;
 	border: none;
 }
-#button[type="text"] {
+.button[type="text"] {
 	font-family: "Ubuntu";
 }
 #input {
