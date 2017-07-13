@@ -66,11 +66,11 @@
             var output = "";
             if (action == 'decode')
             {
-                output = atob(input);
+                output = btoa(input);
             }
             else if (action == 'encode' )
             {
-                output = btoa(input);
+                output = atob(input);
             }
             document.getElementById('output').innerHTML = output;
         }
