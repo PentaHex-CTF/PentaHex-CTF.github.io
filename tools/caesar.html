@@ -83,8 +83,8 @@
                 finalOutput += ((N < 10 ? "0" : "") + N + ": " + output + "<br>");
 
             }
-            if (document.getElementById("output").value != finalOutput) {
-                document.getElementById("output").value = finalOutput;
+            if (document.getElementById("output").textContent != finalOutput) {
+                document.getElementById("output").textContent = finalOutput;
             }
         }
     </script>
