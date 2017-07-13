@@ -66,6 +66,9 @@
             var input = document.getElementById("input").value;
             var output = "";
             
+            if (parseInt(document.getElementById("loopNum").value,10) == "") {
+                document.getElementById("loopNum").value = "1";
+            }
             var loopNum = parseInt(document.getElementById("loopNum").value,10);
             
             if (loopNum < 1) {
@@ -74,17 +77,20 @@
                 document.getElementById("loopNum").value = 24;
             }
             
-            loopNum = (document.getElementById("loopNum").value == "" ? 1 : parseInt(document.getElementById("loopNum").value,10));
+            loopNum = parseInt(document.getElementById("loopNum").value,10);
             
             for (var i = 0; i < loopNum; i ++) {
+                if (loopNum > 1) {
+                    output += (i + 1) + ": ";
+                }
                 if (action == 'decode')
                 {
-                    output += i + ": " + btoa(input);
+                    output += btoa(input);
                     input = btoa(input);
                 }
                 else if (action == 'encode' )
                 {
-                    output += i + ": " + atob(input);
+                    output += atob(input);
                     input = atob(input)
                 }
                 output += "<br>"
