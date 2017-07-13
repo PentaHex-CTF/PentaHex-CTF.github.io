@@ -3,7 +3,7 @@ body {
 	font-family: "Ubuntu";
 	background: url("https://www.transparenttextures.com/patterns/shattered-dark.png");
 }
-p {
+p,li {
 	text-align:left;
 }
 h1 {
