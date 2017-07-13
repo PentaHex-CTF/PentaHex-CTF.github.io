@@ -81,8 +81,8 @@
                 finalOutput += ((N < 10 ? "0" : "") + N + ": " + output + "\n");
 
             }
-            if (document.getElementById("output").textContent != finalOutput) {
-                document.getElementById("output").textContent = finalOutput;
+            if (document.getElementById("output").innerHTML != finalOutput) {
+                document.getElementById("output").innerHTML = finalOutput;
             }
         }
     </script>
