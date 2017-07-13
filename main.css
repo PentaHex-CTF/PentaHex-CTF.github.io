@@ -1,7 +1,7 @@
 body {
 	text-align: center;
 	font-family: "Ubuntu";
-	background: url("https://www.transparenttextures.com/patterns/shattered-dark.png");
+	background: url("/images/background.jpg");
 }
 p,li {
 	text-align:left;
