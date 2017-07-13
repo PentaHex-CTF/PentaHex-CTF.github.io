@@ -54,7 +54,7 @@
             
             <input class="button" type="button" value="DECODE" onclick="update('encode');" />
             <input class="button" type="button" value="ENCODE" onclick="update('decode');" />
-            REPEAT: <input class="button" id="loopNum" value="1" style="width:30px;padding:8px;" min="1" max="99" type="number">
+            REPEAT: <input class="button" id="loopNum" value="1" style="width:30px;padding:8px;" min="1" max="24" type="number">
             
             <p id="output" class="code"></p>
 
@@ -70,11 +70,11 @@
             
             if (loopNum < 1) {
                 document.getElementById("loopNum").value = 1;
-            } else if (loopNum > 99) {
-                document.getElementById("loopNum").value = 99;
+            } else if (loopNum > 24) {
+                document.getElementById("loopNum").value = 24;
             }
             
-            loopNum = document.getElementById("loopNum").value;
+            loopNum = (document.getElementById("loopNum").value == "" ? 1 : parseInt(document.getElementById("loopNum").value,10));
             
             for (var i = 0; i < loopNum; i ++) {
                 if (action == 'decode')
