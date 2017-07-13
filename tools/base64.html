@@ -54,7 +54,7 @@
             
             <input class="button" type="button" value="DECODE" onclick="update('encode');" />
             <input class="button" type="button" value="ENCODE" onclick="update('decode');" />
-            REPEAT: <input class="button" id="loopNum" style="width:30px;padding:8px;" min="1" max="99" type="number">
+            REPEAT: <input class="button" id="loopNum" value="1" style="width:30px;padding:8px;" min="1" max="99" type="number">
             
             <p id="output" class="code"></p>
 
@@ -80,10 +80,12 @@
                 if (action == 'decode')
                 {
                     output += i + ": " + btoa(input);
+                    input = btoa(input);
                 }
                 else if (action == 'encode' )
                 {
                     output += i + ": " + atob(input);
+                    input = atob(input)
                 }
                 output += "<br>"
             }
