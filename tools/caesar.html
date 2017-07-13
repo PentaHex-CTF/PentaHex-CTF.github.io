@@ -49,10 +49,8 @@
             <h2>Caesar Cipher</h2>
 
             <textarea id="input"></textarea>
-
-
-
-            <div id="output"></div>
+            
+            <p id="output"></p>
 
         </div>
     </div>
@@ -80,7 +78,7 @@
                     }
                 }
 
-                finalOutput += ((N < 10 ? "0" : "") + N + ": " + output + "<br>");
+                finalOutput += ((N < 10 ? "0" : "") + N + ": " + output + "\n");
 
             }
             if (document.getElementById("output").textContent != finalOutput) {
