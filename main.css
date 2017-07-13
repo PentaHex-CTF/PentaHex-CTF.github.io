@@ -116,3 +116,6 @@ a {
 	width: 400px;
 	height 120px;
 }
+#output {
+    word-wrap:break-word;
+}
