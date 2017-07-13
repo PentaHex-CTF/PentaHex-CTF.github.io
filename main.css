@@ -111,3 +111,7 @@ a {
 #button[type="text"] {
 	font-family: "Ubuntu";
 }
+#input {
+	width: 400px;
+	height 80px;
+}
