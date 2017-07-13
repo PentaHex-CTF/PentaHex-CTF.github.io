@@ -107,11 +107,12 @@ a {
 	border-radius: 4px;
 	color: white;
 	font-size: 12px;
+	border: none;
 }
 #button[type="text"] {
 	font-family: "Ubuntu";
 }
 #input {
 	width: 400px;
-	height 80px;
+	height 120px;
 }
