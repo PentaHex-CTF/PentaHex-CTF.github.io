@@ -15,7 +15,7 @@
 
 </head>
 
-<body onload="setInterval(function(){update()}, 500);">
+<body>
 
     <h1>PentaHex</h1>
     <table style='width:100%;' id="menu">
@@ -49,6 +49,8 @@
             <h2>Caesar Cipher</h2>
 
             <textarea id="input"></textarea>
+            
+            <input id="button" type="button" value="UPDATE" onclick="update();" />
             
             <p id="output"></p>
 
