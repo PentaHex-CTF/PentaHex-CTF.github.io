@@ -64,7 +64,7 @@
     <script>
         function update(action) {
             var input = document.getElementById("input").value;
-            var output = "";
+            document.getElementById('output').innerHTML = "";
             
             if (parseInt(document.getElementById("loopNum").value,10) == "") {
                 document.getElementById("loopNum").value = "1";
@@ -81,21 +81,20 @@
             
             for (var i = 0; i < loopNum; i ++) {
                 if (loopNum > 1) {
-                    output += (i + 1) + ": ";
+                    document.getElementById('output').innerHTML += (i + 1) + ": ";
                 }
                 if (action == 'decode')
                 {
-                    output += btoa(input);
+                    document.getElementById('output').innerHTML += btoa(input);
                     input = btoa(input);
                 }
                 else if (action == 'encode' )
                 {
-                    output += atob(input);
+                    document.getElementById('output').innerHTML += atob(input);
                     input = atob(input)
                 }
-                output += "<br>"
+                document.getElementById('output').innerHTML += "<br>"
             }
-            document.getElementById('output').innerHTML = output;
         }
     </script>
 
