@@ -89,17 +89,21 @@
             if (startBase == "t") {
                 
             } else {
-                output += "TEXT: " + String.fromCharCode(parseInt(number, startBase)) + "<br>";
+                output += "  TEXT: " + String.fromCharCode(parseInt(number, startBase)) + "<br>";
+                
+                output += "<br>"
                 
                 var importantBases = [2,10,16];
                 for (var i in importantBases) {
                     var endBase = importantBases[i];
-                    output += "Base " + endBase + ": " + parseInt(number, startBase).toString(endBase) + "<br>";
+                    output += "Base " + (endBase < 10 ? "0" : "") + endBase + ": " + parseInt(number, startBase).toString(endBase) + "<br>";
                 }
+                
                 output += "<br>"
+                
                 for (var endBase = 2; endBase <= 36; endBase ++) {
                     if (!importantBases.includes(endBase)) {
-                        output += "Base " + endBase + ": " + parseInt(number, startBase).toString(endBase) + "<br>";
+                        output += "Base " + (endBase < 10 ? "0" : "") + endBase + ": " + parseInt(number, startBase).toString(endBase) + "<br>";
                     }
                 }
             }
