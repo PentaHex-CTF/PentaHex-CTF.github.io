@@ -90,7 +90,15 @@
                 
             } else {
                 number = number.replace(" ", "");
-                output += "TEXT: " + String.fromCharCode(parseInt(number, startBase)) + "<br>";
+                var text = "";
+                var hex = parseInt(number, startBase).toString(16);
+                if (hex.length % 2 == 1) {
+                    hex = "0" + hex;
+                }
+                for (var i = hex.length - 2; i > 0; i -= 2) {
+                    text += String.fromCharCode(parseInt(hex.substr(i,2),16));
+                }
+                output += "TEXT: " + text + "<br>";
                 
                 output += "<br>"
                 
