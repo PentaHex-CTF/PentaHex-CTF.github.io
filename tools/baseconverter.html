@@ -95,7 +95,7 @@
                 if (hex.length % 2 == 1) {
                     hex = "0" + hex;
                 }
-                for (var i = hex.length - 2; i > 0; i -= 2) {
+                for (var i = hex.length - 2; i >= 0; i -= 2) {
                     text += String.fromCharCode(parseInt(hex.substr(i,2),16));
                 }
                 output += "TEXT: " + text + "<br>";
