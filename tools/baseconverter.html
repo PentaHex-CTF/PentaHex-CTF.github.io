@@ -96,7 +96,7 @@
                     hex = "0" + hex;
                 }
                 for (var i = hex.length - 2; i >= 0; i -= 2) {
-                    text += String.fromCharCode(parseInt(hex.substr(i,2),16));
+                    text = String.fromCharCode(parseInt(hex.substr(i,2),16)) + text;
                 }
                 output += "TEXT: " + text + "<br>";
                 
