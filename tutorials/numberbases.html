@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		
+		<meta charset="utf-8">
+		<title>Tutorials - PentaHex</title>
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Squada+One" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="/main.css">
+		<link rel="shortcut icon" type="image/png" href="/images/favicon.png"/>
+		
+	</head>
+	<body>
+		
+		<h1>PentaHex</h1>
+		<table style='width:100%;' id="menu">
+			<tr>
+				<td></td>
+				<td style='width:75px'>
+					<a href="/">HOME</a>
+				</td>
+				<td style='width:105px'>
+					<a href="/writeups/">WRITEUPS</a>
+				</td>
+				<td style='width:80px'>
+					<a href="/tools/">TOOLS</a>
+				</td>
+				<td style='width:115px'>
+					<a href="/resources/">RESOURCES</a>
+				</td>
+				<td style='width:110px'>
+					<a href="/tutorials/">TUTORIALS</a>
+				</td>
+				<td style='width:85px'>
+					<a href="/about.html">ABOUT</a>
+				</td>
+				<td></td>
+			</tr>
+		</table>
+		
+		<div id="container1_w">
+        <div id="container2_w">
+            <h2>Number Bases</h2>
+            <p>When counting, we use the digits 0 to 9, and once those are used up, we add a decimal place and start back up at 0. But what if we only used 4 digits, 0 to 3? Or what if we added a digit, A? By doing so, we would be changing the base of the number system.</p>
+            <p>The concept of a base with numbers is how many digits are used to count. Most of the numbers we see are in base 10, which uses the digits 0 to 9. A few other common bases are binary (base 2) which uses 0 and 1, and hexadecimal (base 16) which uses 0 to 9 and A to F.</p>
+            <p>Bases are represented with a subscript after the number representing the base. For example, 10<sub>2</sub> or 1234<sub>9</sub>. Any numbers without this subscript are assumed to be base 10.</p>
+            <p>Scientific Notation is very useful with number bases. As a reminder, scientific notation of a number like 354 would be 3&times;10<sup>2</sup>+5&times;10<sup>1</sup>+4.</p>
+            <p>The scientific notation of a number changes when the base changes. The scientific notation of 354<sub>6</sub> would be 3&times;6<sup>2</sup>+5&times;6<sup>1</sup>+4.</p>
+            <p>An important thing to note, each digit in a number has to be less than its base. 5 can't be a digit in base 4, and 7 can't be a digit in base 7.</p>
+            
+            <hr>
+            
+            <p>Now on to adding numbers of a different base. Essentially, this is the same as adding in base 10. Let's do an example in hexadecimal.</p>
+            <p class="code">&nbsp;45<br>+3F<br>---<br>&nbsp;84</p>
+            <p>The 5 and D add to 12. (E, F, 10, 11, 12) The units digit is 2. Then we add 4 + 3  + 1 = 8. Our tens digit is 8. Our answer is 0x82. <br>NOTE: Hexadecimal numbers start with 0x and then the number, rather than the 16 subscript.</p>
+            
+            <hr>
+            
+            <p>We can start with converting numbers from any base to base 10. This is very simple, just write it in scientific notation, and simplify.</p>
+            <p>Let's say we want to convert 1010<sub>2</sub> to base 10.</p>
+            <ol>
+                <li>First, we write it in scientific notation: 1&times;2<sup>3</sup>+0&times;2<sup>2</sup>+1&times;2<sup>1</sup>+0.</li>
+                <li>Then, we simplify: 8 + 2 = 10.</li>
+            </ol>
+            <p>We're done! It's as simple as that! Converting to another base will be a bit more difficult, though. There are a few steps to go through:</p>
+            <ol>
+                <li>Find the highest power of the base that is less than the number.</li>
+                <li>Divide the number by the base to this power. Record the quotient as the digit, and record the remainder for the next step.</li>
+                <li>Take the remainder and divide it by the next (lower) power of the base. The quotient is the next digit and keep the remainder for the next step.</li>
+                <li>Repeat the last step until you divide by the base. The remainder is the last digit and you're done.</li>
+            </ol>
+            <p>Don't worry if this makes no sense. An example will make this a lot clearer! Let's convert 144 to base 5.</p>
+            <ol>
+                <li>The highest power of 5 that's less than 144 is 125 (5<sup>3</sup>)</li>
+                <li>144 / 125 = 1, remainder 19. The first digit in our base 5 conversion is 1. We'll use 19 in our next step.</li>
+                <li>19 / 25 = 0, remainder 19. 19 is less than the next power of 5, so the next digit is 0, and we continue to the next power.</li>
+                <li>19 / 5 = 3, remainder 4. The next digit is 3, and we'll use 4 in the last step.</li>
+                <li>Now we have divided by the base, 5. The remainder, 4, is the last digit.</li>
+                <li>Our completed conversion is 1034<sub>5</sub></li>
+            </ol>
+            <p>Changing bases is very tedious work, especially with large numbers. There's a lot of times where you want to change a number's base fast. That's why we've created a <a href="/tools/baseconverter.html">base converter</a>. It can change any number from one base to another. Simply enter the number in one base (make sure each of the digits are valid) and enter it's base in the start base spot. Then, enter the base you want to convert it to in the end base spot. It's a helpful tool for large numbers and quick conversions!</p>
+        </div>
+		</div>
+		
+	</body>
+</html>
