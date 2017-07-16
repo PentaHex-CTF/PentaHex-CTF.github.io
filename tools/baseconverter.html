@@ -48,26 +48,35 @@
 
             <h2>Base Converter</h2>
             
-            <p>Enter a number or text to convert. Then, enter a start base from 2 to 36, or t for text input.</p>
+            <p>Enter a number to convert. Then, enter a start and end base (2 or more).<br>NOTE: Large numbers will not be as accurate</p>
             
-            <p>NUMBER/TEXT:</p>
-            <input class=button type="text" style="width:500px" id="number">
-            <p>START BASE: </p>
-            <input class=button type="text" value="10" id="startBase">
+            NUMBER: <input class=button type="text" style="width:200px;" id="number" alt="Number">
+            <br>
+            <p style="display: inline;">START BASE: </p>
+            <input class=button type="text" style="width:17px" value="10" id="startBase">
+            <br>
+            <p style="display: inline;">END BASE: </p>
+            <input class=button type="text" style="width:17px" value="10" id="endBase">
             
+            <br>
             <br>
             
             <input class="button" type="button" value="CALCULATE" onclick="update();" />
             
             <p id="output" class="code"></p>
-
+            
+            <br>
+            
+            <p>Don't know how to use this tool? Learn how different bases work in <a href="/tutorials/numberbases.html">this tutorial.</a></p>
+            
         </div>
     </div>
 
     <script>
         function update() {
             var startBase = document.getElementById("startBase").value;
-            var number = document.getElementById("number").value;
+            var endBase = document.getElementById("endBase").value;
+            var number = document.getElementById("number").value.replace(/ /g,"");
             var output = "";
             
             if (startBase == "") {
@@ -75,49 +84,57 @@
                 return;
             }
             if (number == "") {
-                document.getElementById("output").textContent = "ERROR: Please enter " + (startBase == "t" ? "text" : "a number");
+                document.getElementById("output").textContent = "ERROR: Please enter a number...";
                 return;
             }
-            if (isNaN(startBase) && startBase != "t") {
-                document.getElementById("output").textContent = "ERROR: Please enter a valid start base.";
+            if (isNaN(startBase)) {
+                document.getElementById("output").textContent = "ERROR: Please enter a number for the start base.";
                 return;
             }
-            if (parseInt(startBase) < 2 || parseInt(startBase) > 36) {
+            if (parseInt(startBase) < 2) {
                 document.getElementById("output").textContent = "ERROR: Start base not in correct range.";
                 return;
             }
-            if (startBase == "t") {
-                
-            } else {
-                number = number.replace(" ", "");
-                var text = "";
-                var hex = parseInt(number, startBase).toString(16);
-                if (hex.length % 2 == 1) {
-                    hex = "0" + hex;
-                }
-                for (var i = hex.length - 2; i >= 0; i -= 2) {
-                    text = String.fromCharCode(parseInt(hex.substr(i,2),16)) + text;
-                }
-                output += "TEXT: " + text + "<br>";
-                
-                output += "<br>"
-                
-                var importantBases = [2,10,16];
-                for (var i in importantBases) {
-                    var endBase = importantBases[i];
-                    output += "Base " + endBase + ": " + parseInt(number, startBase).toString(endBase) + "<br>";
-                }
-                
-                output += "<br>"
-                
-                for (var endBase = 2; endBase <= 36; endBase ++) {
-                    if (!importantBases.includes(endBase)) {
-                        output += "Base " + endBase + ": " + parseInt(number, startBase).toString(endBase) + "<br>";
-                    }
-                }
+            if (isNaN(endBase)) {
+                document.getElementById("output").textContent = "ERROR: Please enter a number for the end base.";
+                return;
+            }
+            if (parseInt(endBase) < 2) {
+                document.getElementById("output").textContent = "ERROR: End base not in correct range.";
+                return;
             }
             
-            document.getElementById("output").innerHTML = output;
+            var finalResult = "";
+            
+            var result = "";
+            
+            var n = 0;
+            var z = 0;
+            startBase = parseInt(startBase,10);
+            for (var i = number.length - 1; i >= 0; i --) {
+                if (isNaN (parseInt(number[i],startBase))) {
+                    document.getElementById("output").innerHTML = "ERROR: Invalid characters. Check the number.";
+                    return;
+                }
+                n += number[i]*Math.pow(startBase,z);
+                z ++;
+            }
+            number = n; //base 10 number
+
+            var maxPow = 0;
+            while ((number / (Math.pow(endBase,maxPow))) > endBase) {
+                maxPow ++;
+            }
+            while (maxPow >= 0) {
+                var l = ((number - (number % Math.pow(endBase, maxPow)))/Math.pow(endBase, maxPow));
+                result += l.toString();
+                number -= l*Math.pow(endBase, maxPow);
+                maxPow --;
+            }
+
+            finalResult = "Base " + startBase.toString() + ": " + document.getElementById("number").value + "<br>Base " + endBase + ": " + result;
+
+            document.getElementById("output").innerHTML = finalResult;
         }
     </script>
 
