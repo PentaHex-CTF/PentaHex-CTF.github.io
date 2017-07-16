@@ -67,18 +67,16 @@
             </ol>
             <p>We're done! It's as simple as that! Converting to another base will be a bit more difficult, though. There are a few steps to go through:</p>
             <ol>
-                <li>Find the highest power of the base that is less than the number.</li>
-                <li>Divide the number by the base to this power. Record the quotient as the digit, and record the remainder for the next step.</li>
-                <li>Take the remainder and divide it by the next (lower) power of the base. The quotient is the next digit and keep the remainder for the next step.</li>
-                <li>Repeat the last step until you divide by the base. The remainder is the last digit and you're done.</li>
+                <li>Divide your number by the base and record the remainder. This is the rightmost digit.</li>
+                <li>Divide the answer from the previous division by the base again. This digit goes to the left of the last one.</li>
+                <li>Keep dividing and recording the remainders until the number is less than the base. This is the leftmost digit.</li>
             </ol>
             <p>Don't worry if this makes no sense. An example will make this a lot clearer! Let's convert 144 to base 5.</p>
             <ol>
-                <li>The highest power of 5 that's less than 144 is 125 (5<sup>3</sup>)</li>
-                <li>144 / 125 = 1, remainder 19. The first digit in our base 5 conversion is 1. We'll use 19 in our next step.</li>
-                <li>19 / 25 = 0, remainder 19. 19 is less than the next power of 5, so the next digit is 0, and we continue to the next power.</li>
-                <li>19 / 5 = 3, remainder 4. The next digit is 3, and we'll use 4 in the last step.</li>
-                <li>Now we have divided by the base, 5. The remainder, 4, is the last digit.</li>
+                <li>We divide our number by the base: 144 / 5 = 28, remainder 4. ___4</li>
+                <li>28 / 5 = 5, remainder 3. __34</li>
+                <li>5 / 5 = 1, remainder 0. _034</li>
+                <li>1 is less than the base, 5. We use it as the leftmost digit: 1034</li>
                 <li>Our completed conversion is 1034<sub>5</sub></li>
             </ol>
             <p>Changing bases is very tedious work, especially with large numbers. There's a lot of times where you want to change a number's base fast. That's why we've created a <a href="/tools/baseconverter.html">base converter</a>. It can change any number from one base to another. Simply enter the number in one base (make sure each of the digits are valid) and enter it's base in the start base spot. Then, enter the base you want to convert it to in the end base spot. It's a helpful tool for large numbers and quick conversions!</p>
