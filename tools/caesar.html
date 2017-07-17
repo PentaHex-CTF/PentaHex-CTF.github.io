@@ -55,6 +55,9 @@
             <input class="button" type="button" value="UPDATE" onclick="update();" />
             
             <p id="output" class="code"></p>
+            
+            <p>The Caesar cipher, named after Julius Caesar, is a simple shift cipher where each of the letters is shifted by some amount. If the shift amount was 3, then A would become D, B would become E, and so on.</p>
+            <p>It's easily brute-forced by checking each of the different shift amounts. This tool takes the input and checks each of the shift amounts.</p>
 
         </div>
     </div>
@@ -82,7 +85,7 @@
                     }
                 }
 
-                finalOutput += N + ": " + output + "<br>";
+                finalOutput += (N + ": " + output + "<br>");
 
             }
             if (document.getElementById("output").innerHTML != finalOutput) {
