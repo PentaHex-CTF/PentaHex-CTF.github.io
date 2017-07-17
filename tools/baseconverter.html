@@ -127,7 +127,7 @@
             }
             while (maxPow >= 0) {
                 var l = ((number - (number % Math.pow(endBase, maxPow)))/Math.pow(endBase, maxPow));
-                result += l.toString();
+                result += l.toString(endBase);
                 number -= l*Math.pow(endBase, maxPow);
                 maxPow --;
             }
