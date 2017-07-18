@@ -77,6 +77,7 @@
             var startBase = document.getElementById("startBase").value;
             var endBase = document.getElementById("endBase").value;
             var number = document.getElementById("number").value.replace(/ /g,"");
+            var chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVQXYZ";
             var output = "";
             
             if (startBase == "") {
@@ -112,7 +113,7 @@
             var z = 0;
             startBase = parseInt(startBase,10);
             for (var i = number.length - 1; i >= 0; i --) {
-                if (isNaN (parseInt(number[i],startBase))) {
+                if (chars.indexOf(number[i]) == -1 || chars.indexOf(number[i]) > startBase) {
                     document.getElementById("output").innerHTML = "ERROR: Invalid characters. Check the number.";
                     return;
                 }
