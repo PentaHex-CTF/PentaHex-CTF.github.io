@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		
+		<meta charset="utf-8">
+		<title>Tutorials - PentaHex</title>
+		
+		<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Squada+One" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="/main.css">
+		<link rel="shortcut icon" type="image/png" href="/images/favicon.png"/>
+		
+	</head>
+	<body>
+		
+		<h1>PentaHex</h1>
+		<table style='width:100%;' id="menu">
+			<tr>
+				<td></td>
+				<td style='width:75px'>
+					<a href="/">HOME</a>
+				</td>
+				<td style='width:105px'>
+					<a href="/writeups/">WRITEUPS</a>
+				</td>
+				<td style='width:80px'>
+					<a href="/tools/">TOOLS</a>
+				</td>
+				<td style='width:115px'>
+					<a href="/resources/">RESOURCES</a>
+				</td>
+				<td style='width:110px'>
+					<a href="/tutorials/">TUTORIALS</a>
+				</td>
+				<td style='width:85px'>
+					<a href="/about.html">ABOUT</a>
+				</td>
+				<td></td>
+			</tr>
+		</table>
+		
+		<div id="container1_w">
+        <div id="container2_w">
+            <h2>Character Codes</h2>
+            <p>Character codes are simple as each ASCII character having a number associated with it. They're incredibly useful because they allow us to represent a string numerically and reliably be able to get it back.</p>
+            <p>Each of the 128 ASCII characters has a char code, 0 to 127. As a reference, here's a list of all 128:</p>
+            <img src="http://ee.hawaii.edu/~tep/EE160/Book/chap4/_27721_table145.gif">
+            <p>The main ones you will want to know are "0" is 48, "A" is 65, and "a" is 97. From there you'll be able to recognize the type of character a char code is for.</p>
+            <p>Here's an example. Let's say we have a string "PentaHex" and we want to be able to write it in different bases (Don't know bases? See <a href="/tutorials/numberbases.html">Number Bases</a>).</p>
+            <p>Using the image above, we know that the char code for each of the letters in "PentaHex" is; 80 101 110 116 97 72 101 120. To get it in hexadecimal, we'll have to convert them manually or in a <a href="/tools/baseconverter.html">base converter</a>. This gives us: 50 65 6e 74 61 48 65 78. We can also write it in binary: 01010000 01100101 01101110 01110100 01100001 01001000 01100101 01111000.</p>
+            <p>If we concatenate the hexadecimal numbers (50656e7461486578), it's equal to concatenating the binary numbers (0101000001100101011011100111010001100001010010000110010101111000). This works in base 4 too!</p>
+            <p>This is because each digit in base 2 is one bit (2<sup>1</sup> = 2), each digit in base 4 is 2 bits (2<sup>2</sup>) = 4, and each digit in base 16 is 4 bits (2<sup>4</sup> = 16). As a result, 8 bits in binary is equal to into 8/2 = 4 digits in base 4 and 8/4 = 2 digits in base 16.</p>
+            <p>When converting 0x50656e7461486578 to base 10, we get 5793157941809406976, but it doesn't have any of the base 10 number we calculated at the beginning because the bits don't align. This base 10 number still represents the string though!</p>
+            <p>Now that we know how char codes allow strings to be represented numerically, we might want to make use of this. But this entire process with large strings is going to take a long time and converting will be even worse.</p>
+            <p>You can use the <a href="/tools/asciibase.html">ASCII / Base Converter</a> You can convert between text and bases 2, 4, 8, 10, 16, and 64.</p>
+        </div>
+		</div>
+		
+	</body>
+</html>
