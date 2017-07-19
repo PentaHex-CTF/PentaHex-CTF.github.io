@@ -6,7 +6,6 @@
     <meta charset="utf-8">
     <title>Base Converter - PentaHex</title>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Squada+One" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
@@ -48,7 +47,7 @@
 
             <h2>Base Converter</h2>
             
-            <p>Enter a number to convert. Then, enter a start and end base (2 or more).<br>NOTE: Large numbers will not be as accurate</p>
+            <p>Enter a number to convert. A-Z or a-z represents 10-35, and above that write the number in angle brackets: &lt;37&gt;&lt;92&gt;&lt;53&gt;. <br><br>Then, enter a start base (the number's current base) and an end base (the base to convert to).<br><br>It will also attempt to convert to text.</p>
             
             NUMBER: <input class=button type="text" style="width:200px;" id="number" alt="Number">
             <br>
@@ -71,13 +70,13 @@
             
         </div>
     </div>
-
+<script src="http://peterolson.github.com/BigInteger.js/BigInteger.min.js"></script>
     <script>
         function update() {
+            
             var startBase = document.getElementById("startBase").value;
             var endBase = document.getElementById("endBase").value;
             var number = document.getElementById("number").value.replace(/ /g,"");
-            var chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVQXYZ";
             var output = "";
             
             if (startBase == "") {
@@ -92,49 +91,31 @@
                 document.getElementById("output").textContent = "ERROR: Please enter a number for the start base.";
                 return;
             }
-            if (parseInt(startBase) < 2) {
-                document.getElementById("output").textContent = "ERROR: Start base not in correct range.";
+            if (bigInt(startBase).lt(2)) {
+                document.getElementById("output").textContent = "ERROR: Start base is less than 2.";
                 return;
             }
             if (isNaN(endBase)) {
                 document.getElementById("output").textContent = "ERROR: Please enter a number for the end base.";
                 return;
             }
-            if (parseInt(endBase) < 2) {
-                document.getElementById("output").textContent = "ERROR: End base not in correct range.";
+            if (bigInt(endBase).lt(2)) {
+                document.getElementById("output").textContent = "ERROR: End base is less than 2.";
                 return;
             }
             
-            var finalResult = "";
+            var result = bigInt(number, startBase).toString(endBase);
+            var ascii = "";
+            var hex = bigInt(number, startBase).toString(16);
+            if (hex.length % 2 === 1)
+                hex = "0" + hex;
             
-            var result = "";
+            for (var i = 0; i < hex.length; i += 2) {
+                ascii += String.fromCharCode(parseInt(hex.substr(i,2),16));
+            }
             
-            var n = 0;
-            var z = 0;
-            startBase = parseInt(startBase,10);
-            for (var i = number.length - 1; i >= 0; i --) {
-                if (chars.indexOf(number[i]) == -1 || chars.indexOf(number[i]) > startBase) {
-                    document.getElementById("output").innerHTML = "ERROR: Invalid characters. Check the number.";
-                    return;
-                }
-                n += number[i]*Math.pow(startBase,z);
-                z ++;
-            }
-            number = n; //base 10 number
-
-            var maxPow = 0;
-            while ((number / (Math.pow(endBase,maxPow))) > endBase) {
-                maxPow ++;
-            }
-            while (maxPow >= 0) {
-                var l = ((number - (number % Math.pow(endBase, maxPow)))/Math.pow(endBase, maxPow));
-                result += l.toString(endBase);
-                number -= l*Math.pow(endBase, maxPow);
-                maxPow --;
-            }
-
-            finalResult = "Base " + startBase.toString() + ": " + document.getElementById("number").value + "<br>Base " + endBase + ": " + result;
-
+            finalResult = "Base " + startBase.toString() + ": " + document.getElementById("number").value + "<br>Base " + endBase + ": " + result + "<br><br>ASCII: " + ascii;
+            
             document.getElementById("output").innerHTML = finalResult;
         }
     </script>
