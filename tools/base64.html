@@ -6,7 +6,6 @@
     <meta charset="utf-8">
     <title>Base 64 - PentaHex</title>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Squada+One" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
@@ -57,6 +56,9 @@
             REPEAT: <input class="button" id="loopNum" value="1" style="width:30px;padding:8px;" min="1" max="24" type="number">
             
             <p id="output" class="code"></p>
+            
+            <p>This tool allows you to encode text to base 64 and decode base 64 encoded text.</p>
+            <p>The repeat number allows you to decode or encode a base 64 encoded number multiple times. If used with decode, it will stop automatically when it finds plaintext.</p>
 
         </div>
     </div>
@@ -93,7 +95,7 @@
                     document.getElementById('output').innerHTML += atob(input);
                     input = atob(input)
                 }
-                document.getElementById('output').innerHTML += "<br>"
+                document.getElementById('output').innerHTML += "<br><br>"
                 if (input == "")
                     break;
             }
