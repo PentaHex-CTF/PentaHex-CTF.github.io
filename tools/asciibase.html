@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+
+	<meta charset="utf-8">
+	<title>ASCII to Base Converter - PentaHex</title>
+
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Squada+One" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="/main.css">
+	<link rel="shortcut icon" type="image/png" href="/images/favicon.png" />
+
+</head>
+
+<body>
+
+	<h1>PentaHex</h1>
+	<table style='width:100%;' id="menu">
+		<tr>
+			<td></td>
+			<td style='width:75px'>
+				<a href="/">HOME</a>
+			</td>
+			<td style='width:105px'>
+				<a href="/writeups/">WRITEUPS</a>
+			</td>
+			<td style='width:80px'>
+				<a href="/tools/">TOOLS</a>
+			</td>
+			<td style='width:115px'>
+				<a href="/resources/">RESOURCES</a>
+			</td>
+			<td style='width:110px'>
+				<a href="/tutorials/">TUTORIALS</a>
+			</td>
+			<td style='width:85px'>
+				<a href="/about.html">ABOUT</a>
+			</td>
+			<td></td>
+		</tr>
+	</table>
+
+	<div id="container1">
+		<div id="container2">
+			
+			<h2>ASCII/Base Converter</h2>
+			
+			<p>Input a number in one of the valid bases or text to have it converted. Separate decimal (base 10) input with spaces.</p>
+			
+			<textarea id="input"></textarea>
+			<select id="dropdown">
+ 				<option value="binary">base 2 - binary</option>
+ 				<option value="base4">base 4</option>
+				<option value="octal">base 8 - octal</option>
+ 				<option value="decimal">base 10 - decimal</option>
+ 				<option value="hex">base 16 - hexadecimal</option>
+				<option value="base64">base 64</option>
+ 				<option value="ascii">ASCII text</option>
+</select>
+
+			<br>
+			
+			<input class="button" type="button" value="UPDATE" onclick="update();" />
+			
+			<p id="output" class="code"></p>
+			
+		</div>
+	</div>
+
+	<script>
+function update() {
+
+//access the input textarea thing
+var input = document.getElementById('input').value;
+
+//access the description  of starting input (binary, base4, octal, decimal, hex, base64, ascii)
+var e = document.getElementById('dropdown');
+var start = e.options[e.selectedIndex].value;
+
+//empty string to hold stuff later
+var output = "";
+
+switch (start) {
+	case "binary":
+		
+		break;
+	case "base4":
+		break;
+	case "octal":
+		break;
+	case "decimal":
+		break;
+	case "hex":
+		break;
+	case "base64":
+        
+		var chars = []; //will become an array of char codes in decimal
+		var ascii = atob(input); //base 64 to ascii
+		output += "Base 64: " + btoa(ascii);
+		output += "<br><br>ASCII: " + ascii;
+		
+		for (var i = 0; i < ascii.length; i ++) { //loops through ascii
+			chars.push(ascii.charCodeAt(i).toString()); //adds char code to chars array
+        }
+
+var bases = [2,4,8,16]; //bases to convert to (from base 10) 2-8,4-4,8-3,16-2
+var chars_base = []; //chars array, but converted to a different base
+chars_base = [];
+for (var j in chars) {
+    var new_char = parseInt(chars[j], 10).toString(2);
+	chars_base.push("00000000".substr(0,8-new_char.length) + new_char);
+}
+output += "<br>Base 2: " + chars_base.join("");
+chars_base = [];
+for (var j in chars) {
+    var new_char = parseInt(chars[j], 10).toString(4);
+	chars_base.push("0000".substr(0,4-new_char.length) + new_char);
+}
+output += "<br>Base 4: " + chars_base.join("");
+chars_base = [];
+for (var j in chars) {
+    var new_char = parseInt(chars[j], 10).toString(8);
+	chars_base.push(new_char);
+}
+output += "<br>Base 8: " + chars_base.join(" ");
+output += "<br>Base 10: " + chars.join(" ");
+chars_base = [];
+for (var j in chars) {
+    var new_char = parseInt(chars[j], 10).toString(16);
+	chars_base.push("00".substr(0,2-new_char.length) + new_char);
+}
+output += "<br>Base 16: " + chars_base.join("");
+		break;
+	case "ascii":
+		break;
+	default:
+		console.log("You are most definitely a hacker. Please stop messing with this code.");
+		break;
+};
+
+document.getElementById("output").innerHTML = output;
+
+};
+	</script>
+
+</body>
+
+</html>
+
