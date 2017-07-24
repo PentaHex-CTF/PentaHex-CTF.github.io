@@ -49,13 +49,11 @@
             
             <p>Enter a number to convert. A-Z or a-z represents 10-35, and above that write the number in angle brackets: &lt;37&gt;&lt;92&gt;&lt;53&gt;. <br><br>Then, enter a start base (the number's current base) and an end base (the base to convert to).<br><br>It will also attempt to convert to text.</p>
             
-            NUMBER: <input class=button type="text" style="width:200px;" id="number" alt="Number">
+            NUMBER: <input autofocus="true" class="button" type="text" style="width:200px;" id="number" alt="Number">
             <br>
-            <p style="display: inline;">START BASE: </p>
-            <input class=button type="text" style="width:17px" value="10" id="startBase">
+            START BASE: <input class="button" type="text" style="width:17px" value="10" id="startBase">
             <br>
-            <p style="display: inline;">END BASE: </p>
-            <input class=button type="text" style="width:17px" value="10" id="endBase">
+            END BASE: <input class="button" type="text" style="width:17px" value="10" id="endBase">
             
             <br>
             <br>
@@ -104,7 +102,19 @@
                 return;
             }
             
-            var result = bigInt(number, startBase).toString(endBase);
+            try {
+                var temp = bigInt();
+            } 
+            catch (err) {
+                document.getElementById("output").innerHTML = "ERROR: Not able to load bigInt(). Check internet connection.";
+                return;
+            }
+            try {
+                var result = bigInt(number, startBase).toString(endBase);
+            }
+            catch (err) {
+                document.getElementById("output").innerHTML = "ERROR: Number not valid in specified start base.";
+            }
             var ascii = "";
             var hex = bigInt(number, startBase).toString(16);
             if (hex.length % 2 === 1)
