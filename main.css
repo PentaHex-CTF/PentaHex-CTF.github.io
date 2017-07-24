@@ -112,9 +112,10 @@ a {
 .button[type="text"] {
 	font-family: "Ubuntu";
 }
-#input {
-	width: 400px;
-	height 120px;
+.input {
+    width: 30em;
+    height: 5em;
+    margin: 10px
 }
 #output {
     white-space: -moz-pre-wrap; /* Mozilla */
@@ -125,4 +126,11 @@ a {
 	white-space: pre-line; /* CSS 3 (and 2.1 as well, actually) */
 	word-wrap: break-word; /* IE */
 	word-break: break-all;
+}
+.dropdown {
+    height: 32px;
+    background-color: #F33;
+    color: white;
+    font-size: 12px;
+    margin: 5px;
 }
