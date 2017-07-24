@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+
+	<meta charset="utf-8">
+	<title>XOR Finder - PentaHex</title>
+
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Squada+One" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="/main.css">
+	<link rel="shortcut icon" type="image/png" href="/images/favicon.png" />
+
+</head>
+
+<body>
+
+	<h1>PentaHex</h1>
+	<table style='width:100%;' id="menu">
+		<tr>
+			<td></td>
+			<td style='width:75px'>
+				<a href="/">HOME</a>
+			</td>
+			<td style='width:105px'>
+				<a href="/writeups/">WRITEUPS</a>
+			</td>
+			<td style='width:80px'>
+				<a href="/tools/">TOOLS</a>
+			</td>
+			<td style='width:115px'>
+				<a href="/resources/">RESOURCES</a>
+			</td>
+			<td style='width:110px'>
+				<a href="/tutorials/">TUTORIALS</a>
+			</td>
+			<td style='width:85px'>
+				<a href="/about.html">ABOUT</a>
+			</td>
+			<td></td>
+		</tr>
+	</table>
+
+	<div id="container1_w">
+		<div id="container2_w">
+			
+			<h2>XOR Calculator</h2>
+			
+			<p>Input text or a number in binary, decimal, or hexadecimal. Enter the bit length to brute force.</p>
+			
+			<textarea autofocus="true" id="input" class="input" textContent="KGZFK\qZFG]qA\qZFOZ"></textarea>
+            <br>
+			
+			<select id="dropdown" class="dropdown">
+ 				<option value="binary">binary</option>
+ 				<option value="decimal">decimal</option>
+ 				<option value="hex">hexadecimal</option>
+ 				<option value="ascii" selected="selected">ASCII text</option>
+            </select>
+            <br>
+            <br>
+            <input type="number" value="8" style="width:25px;" id="bit_len">
+            <label for="bit_len">bit length&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <br>
+            <input type="checkbox" id="repeat_check" checked="true">
+            <label for="repeat_check">Repeat to match length&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <br>
+            <input type="checkbox" id="ascii_check" checked="true">
+            <label for="ascii_check">Filter ASCII (recommended)</label>
+            <br>
+            <input type="checkbox" id="filter_check">
+            <label for="filter_check">Filter string: 
+            <input type="text" style="width:79px;" id="filter"></label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            
+            <!-- Sorry about all those nbsp characters, I was a bit to lazy to actually align them... -->
+            
+            <br>
+            <br>
+			<input class="button" type="button" value="UPDATE" onclick="update();" >
+			<p id="output" class="code"></p>
+			
+		</div>
+	</div>
+
+	<script>
+function update() {
+
+//access the input textarea thing
+var input1 = document.getElementById('input').value;
+
+if (input1 == "") {
+    document.getElementById("output").innerHTML = "ERROR: Please enter a value to XOR.";
+    return;
+}
+
+var e1 = document.getElementById('dropdown');
+var start1 = e1.options[e1.selectedIndex].value;
+
+//empty string to hold stuff later
+var output = "";
+
+var length = parseInt(document.getElementById("bit_len").value);
+var repeat = document.getElementById("repeat_check").checked;
+var useFilter = document.getElementById("filter_check").checked;
+var filterAscii = document.getElementById("ascii_check").checked;
+var filter = document.getElementById("filter").value;
+
+switch (start1) {
+	case "binary":
+        if (/^[01]*$/.test(input1)) {
+            while (input1.length % 8 != 0) {
+                input1 = "0" + input1;
+            }
+        } else {
+            document.getElementById("output").innerHTML = "ERROR: Invalid binary number in input.";
+            return;
+        }
+		break;
+	case "decimal":
+        if (/^[0-9]*$/.test(input1)) {
+            input1 = parseInt(input1).toString(2);
+        } else {
+            document.getElementById("output").innerHTML = "ERROR: Invalid decimal number in input.";
+            return;
+        }
+		break;
+	case "hex":
+        if (/^[0-9a-fA-F]*$/.test(input1)) {
+            input1 = parseInt(input1,16).toString(2);
+        } else {
+            document.getElementById("output").innerHTML = "ERROR: Invalid hexadecimal number in input.";
+            return;
+        }
+		break;
+	case "ascii":
+        var temp = "";
+        for (var i in input1) {
+            var binary = input1.charCodeAt(i).toString(2)
+            while (binary.length % 8 != 0) {
+                binary = "0" + binary;
+            }
+            temp += binary;
+        }
+        input1 = temp;
+		break;
+	default:
+		console.log("You are most definitely a hacker. Please stop messing with this code.");
+		break;
+};
+var nums = [];
+var temp = "";
+var final = "";
+var permut = function(string, num, letters) {
+	if (num == 0) {
+        var tmp = string;
+        if (repeat) {
+            while (tmp.length < input1.length) {
+                tmp += string;
+            }
+            while (input1.length < tmp.length) {
+                tmp = tmp.substr(1);
+            }
+        } else {
+            while (tmp.length < input1.length) {
+                tmp = "0" + tmp;
+            }
+        }
+    	nums.push(tmp)
+    } else {
+    	for (var i = 0; i < letters.length; i ++) {
+        	permut(string + letters[i], num - 1, letters);
+        }
+    }
+};
+permut("",length,"01")
+var xor = [];
+var valid = true;
+
+document.getElementById("output").innerHTML = "Input: " + input1 + "<br><br>"
+
+for (var i in nums) {
+    xor_b2 = "";
+    valid = true;
+    
+    for (var j in input1) {
+        xor_b2 += ((parseInt(input1[j]) + parseInt(nums[i][j])) % 2).toString();
+    }
+    while (xor_b2.length % 8 != 0) {
+        xor_b2 = "0" + xor_b2;
+    }
+    xor = [];
+    for (var l = 0; l < xor_b2.length; l += 8) {
+        xor.push(parseInt(xor_b2.substr(l,8),2));
+    }
+    if (filterAscii) {
+        for (var s in xor) {
+            if (xor[s] < 32 || xor[s] >= 127) {
+                valid = false;
+            }
+        }
+    }
+    if (valid) {
+        var ascii = "";
+        for (var z in xor) {
+            var chr = String.fromCharCode(xor[z]);
+            if (chr == ">") {
+                ascii += "&gt;";
+            } else if (chr == "<") {
+                ascii += "&lt;";
+            } else {
+                ascii += String.fromCharCode(xor[z]);
+            }
+        }
+        if (ascii.includes(filter) || !useFilter) {
+            document.getElementById("output").innerHTML += (nums[i] + ": " + ascii + "<br>");
+        }
+    }
+}
+//document.getElementById("output").innerHTML = output;
+
+};
+	</script>
+
+</body>
+
+</html>
+
