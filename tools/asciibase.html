@@ -47,23 +47,22 @@
 			
 			<h2>ASCII/Base Converter</h2>
 			
-			<p>Input a number in one of the valid bases or text to have it converted. Separate decimal (base 10) input with spaces.</p>
+			<p>Input text or a number in one of the valid bases to have it converted. Separate decimal and octal input with spaces.</p>
 			
-			<textarea id="input"></textarea>
-			<select id="dropdown">
- 				<option value="binary">base 2 - binary</option>
+			<textarea autofocus="true" class="input" id="input"></textarea>
+            <br>
+			<input class="button" type="button" value="UPDATE" onclick="update();" />
+			
+			<select id="dropdown" class="dropdown">
+ 				<option value="binary" selected="selected">base 2 - binary</option>
  				<option value="base4">base 4</option>
 				<option value="octal">base 8 - octal</option>
  				<option value="decimal">base 10 - decimal</option>
  				<option value="hex">base 16 - hexadecimal</option>
 				<option value="base64">base 64</option>
  				<option value="ascii">ASCII text</option>
-</select>
-
-			<br>
-			
-			<input class="button" type="button" value="UPDATE" onclick="update();" />
-			
+            </select>
+            
 			<p id="output" class="code"></p>
 			
 		</div>
@@ -84,18 +83,221 @@ var output = "";
 
 switch (start) {
 	case "binary":
+		var b2 = input;
+		var chars_b2 = [];
+        var chars = [];
+        var ascii = "";
+        
+        while (b2.length % 8 != 0) {
+            b2 = "0" + b2;
+        }
+        
+        for (var i = 0; i < b2.length; i += 8) {
+            chars_b2.push(b2.substr(i,8));
+        }
+        
+        for (var i in chars_b2) {
+            chars.push(parseInt(chars_b2[i],2).toString());
+        }
+        
+        for (var i = 0; i < chars.length; i ++) {
+            ascii += String.fromCharCode(chars[i]);
+        }
+        output += "Base 2: " + input;
+        output += "<br><br>ASCII: " + ascii;
+        output += "<br>Base 64: " + btoa(ascii);
+        
+        var chars_base = []; //chars array, but converted to a different base
+        for (var j in chars) {
+            var new_char = parseInt(chars[j], 10).toString(4);
+            chars_base.push("0000".substr(0,4-new_char.length) + new_char);
+        }
+        output += "<br>Base 4: " + chars_base.join("");
+        chars_base = [];
+        for (var j in chars) {
+            var new_char = parseInt(chars[j], 10).toString(8);
+            chars_base.push(new_char);
+        }
+        output += "<br>Base 8: " + chars_base.join(" ");
+        output += "<br>Base 10: " + chars.join(" ");
+        chars_base = [];
+        for (var j in chars) {
+            var new_char = parseInt(chars[j], 10).toString(16);
+            chars_base.push("00".substr(0,2-new_char.length) + new_char);
+        }
+        output += "<br>Base 16: " + chars_base.join("");
 		
 		break;
 	case "base4":
+		var b4 = input;
+		var chars_b4 = [];
+        var chars = [];
+        var ascii = "";
+        
+        while (b4.length % 4 != 0) {
+            b4 = "0" + b4;
+        }
+        
+        for (var i = 0; i < b4.length; i += 4) {
+            chars_b4.push(b4.substr(i,4));
+        }
+        
+        for (var i in chars_b4) {
+            chars.push(parseInt(chars_b4[i],4).toString());
+        }
+        
+        for (var i = 0; i < chars.length; i ++) {
+            ascii += String.fromCharCode(chars[i]);
+        }
+        output += "Base 4: " + input;
+        output += "<br><br>ASCII: " + ascii;
+        output += "<br>Base 64: " + btoa(ascii);
+        
+        var chars_base = []; //chars array, but converted to a different base
+        for (var j in chars) {
+            var new_char = parseInt(chars[j], 10).toString(2);
+            chars_base.push("00000000".substr(0,8-new_char.length) + new_char);
+        }
+        output += "<br>Base 2: " + chars_base.join("");
+        chars_base = [];
+        for (var j in chars) {
+            var new_char = parseInt(chars[j], 10).toString(8);
+            chars_base.push(new_char);
+        }
+        output += "<br>Base 8: " + chars_base.join(" ");
+        output += "<br>Base 10: " + chars.join(" ");
+        chars_base = [];
+        for (var j in chars) {
+            var new_char = parseInt(chars[j], 10).toString(16);
+            chars_base.push("00".substr(0,2-new_char.length) + new_char);
+        }
+        output += "<br>Base 16: " + chars_base.join("");
+		
 		break;
 	case "octal":
+        
+		var chars_b8 = input.split(" ");
+        var chars = [];
+        var ascii = "";
+        
+        for (var i in chars_b8) {
+            chars.push(parseInt(chars_b8[i],8).toString());
+        }
+        
+        for (var i = 0; i < chars.length; i ++) {
+            ascii += String.fromCharCode(chars[i]);
+        }
+        output += "Base 8: " + input;
+        output += "<br><br>ASCII: " + ascii;
+        output += "<br>Base 64: " + btoa(ascii);
+        
+        var chars_base = []; //chars array, but converted to a different base
+        for (var j in chars) {
+            var new_char = parseInt(chars[j], 10).toString(2);
+            chars_base.push("00000000".substr(0,8-new_char.length) + new_char);
+        }
+        output += "<br>Base 2: " + chars_base.join("");
+        chars_base = [];
+        for (var j in chars) {
+            var new_char = parseInt(chars[j], 10).toString(4);
+            chars_base.push("0000".substr(0,4-new_char.length) + new_char);
+        }
+        output += "<br>Base 4: " + chars_base.join("");
+        output += "<br>Base 10: " + chars.join(" ");
+        chars_base = [];
+        for (var j in chars) {
+            var new_char = parseInt(chars[j], 10).toString(16);
+            chars_base.push("00".substr(0,2-new_char.length) + new_char);
+        }
+        output += "<br>Base 16: " + chars_base.join("");
+		
 		break;
 	case "decimal":
+        var chars = input.split(" ");
+        var ascii = "";
+        for (var i = 0; i < chars.length; i ++) {
+            ascii += String.fromCharCode(chars[i]);
+        }
+        output += "Base 10: " + input;
+        output += "<br><br>ASCII: " + ascii;
+        output += "<br>Base 64: " + btoa(ascii);
+        
+        var chars_base = []; //chars array, but converted to a different base
+        for (var j in chars) {
+            var new_char = parseInt(chars[j], 10).toString(2);
+            chars_base.push("00000000".substr(0,8-new_char.length) + new_char);
+        }
+        output += "<br>Base 2: " + chars_base.join("");
+        chars_base = [];
+        for (var j in chars) {
+            var new_char = parseInt(chars[j], 10).toString(4);
+            chars_base.push("0000".substr(0,4-new_char.length) + new_char);
+        }
+        output += "<br>Base 4: " + chars_base.join("");
+        chars_base = [];
+        for (var j in chars) {
+            var new_char = parseInt(chars[j], 10).toString(8);
+            chars_base.push(new_char);
+        }
+        output += "<br>Base 8: " + chars_base.join(" ");
+        chars_base = [];
+        for (var j in chars) {
+            var new_char = parseInt(chars[j], 10).toString(16);
+            chars_base.push("00".substr(0,2-new_char.length) + new_char);
+        }
+        output += "<br>Base 16: " + chars_base.join("");
 		break;
 	case "hex":
+		var hex = input;
+		var chars_hex = [];
+        var chars = [];
+        var ascii = "";
+        
+        if (hex.length % 2 != 0) {
+            hex = "0" + hex;
+        }
+        
+        for (var i = 0; i < hex.length; i += 2) {
+            chars_hex.push(hex.substr(i,2));
+        }
+        
+        for (var i in chars_hex) {
+            chars.push(parseInt(chars_hex[i],16).toString());
+        }
+        
+        for (var i = 0; i < chars.length; i ++) {
+            ascii += String.fromCharCode(chars[i]);
+        }
+        output += "Base 16: " + input;
+        output += "<br><br>ASCII: " + ascii;
+        output += "<br>Base 64: " + btoa(ascii);
+        
+        var chars_base = []; //chars array, but converted to a different base
+        for (var j in chars) {
+            var new_char = parseInt(chars[j], 10).toString(2);
+            chars_base.push("00000000".substr(0,8-new_char.length) + new_char);
+        }
+        output += "<br>Base 2: " + chars_base.join("");
+        chars_base = [];
+        
+        for (var j in chars) {
+            var new_char = parseInt(chars[j], 10).toString(4);
+            chars_base.push("0000".substr(0,4-new_char.length) + new_char);
+            chars_base.push("0000".substr(0,4-new_char.length) + new_char);
+            chars_base.push("0000".substr(0,4-new_char.length) + new_char);
+        }
+        output += "<br>Base 4: " + chars_base.join("");
+        chars_base = [];
+        for (var j in chars) {
+            var new_char = parseInt(chars[j], 10).toString(8);
+            chars_base.push(new_char);
+        }
+        output += "<br>Base 8: " + chars_base.join(" ");
+        output += "<br>Base 10: " + chars.join(" ");
+		
+		break;
 		break;
 	case "base64":
-        
 		var chars = []; //will become an array of char codes in decimal
 		var ascii = atob(input); //base 64 to ascii
 		output += "Base 64: " + btoa(ascii);
@@ -104,36 +306,68 @@ switch (start) {
 		for (var i = 0; i < ascii.length; i ++) { //loops through ascii
 			chars.push(ascii.charCodeAt(i).toString()); //adds char code to chars array
         }
-
-var bases = [2,4,8,16]; //bases to convert to (from base 10) 2-8,4-4,8-3,16-2
-var chars_base = []; //chars array, but converted to a different base
-chars_base = [];
-for (var j in chars) {
-    var new_char = parseInt(chars[j], 10).toString(2);
-	chars_base.push("00000000".substr(0,8-new_char.length) + new_char);
-}
-output += "<br>Base 2: " + chars_base.join("");
-chars_base = [];
-for (var j in chars) {
-    var new_char = parseInt(chars[j], 10).toString(4);
-	chars_base.push("0000".substr(0,4-new_char.length) + new_char);
-}
-output += "<br>Base 4: " + chars_base.join("");
-chars_base = [];
-for (var j in chars) {
-    var new_char = parseInt(chars[j], 10).toString(8);
-	chars_base.push(new_char);
-}
-output += "<br>Base 8: " + chars_base.join(" ");
-output += "<br>Base 10: " + chars.join(" ");
-chars_base = [];
-for (var j in chars) {
-    var new_char = parseInt(chars[j], 10).toString(16);
-	chars_base.push("00".substr(0,2-new_char.length) + new_char);
-}
-output += "<br>Base 16: " + chars_base.join("");
+        
+        var chars_base = []; //chars array, but converted to a different base
+        for (var j in chars) {
+            var new_char = parseInt(chars[j], 10).toString(2);
+            chars_base.push("00000000".substr(0,8-new_char.length) + new_char);
+        }
+        output += "<br>Base 2: " + chars_base.join("");
+        chars_base = [];
+        for (var j in chars) {
+            var new_char = parseInt(chars[j], 10).toString(4);
+            chars_base.push("0000".substr(0,4-new_char.length) + new_char);
+        }
+        output += "<br>Base 4: " + chars_base.join("");
+        chars_base = [];
+        for (var j in chars) {
+            var new_char = parseInt(chars[j], 10).toString(8);
+            chars_base.push(new_char);
+        }
+        output += "<br>Base 8: " + chars_base.join(" ");
+        output += "<br>Base 10: " + chars.join(" ");
+        chars_base = [];
+        for (var j in chars) {
+            var new_char = parseInt(chars[j], 10).toString(16);
+            chars_base.push("00".substr(0,2-new_char.length) + new_char);
+        }
+        output += "<br>Base 16: " + chars_base.join("");
 		break;
 	case "ascii":
+        var chars = []; //will become an array of char codes in decimal
+		var ascii = input; //base 64 to ascii
+		output += "ASCII: " + ascii;
+		output += "<br><br>Base 64: " + btoa(ascii);
+		
+		for (var i = 0; i < ascii.length; i ++) { //loops through ascii
+			chars.push(ascii.charCodeAt(i).toString()); //adds char code to chars array
+        }
+
+        var chars_base = []; //chars array, but converted to a different base
+        for (var j in chars) {
+            var new_char = parseInt(chars[j], 10).toString(2);
+            chars_base.push("00000000".substr(0,8-new_char.length) + new_char);
+        }
+        output += "<br>Base 2: " + chars_base.join("");
+        chars_base = [];
+        for (var j in chars) {
+            var new_char = parseInt(chars[j], 10).toString(4);
+            chars_base.push("0000".substr(0,4-new_char.length) + new_char);
+        }
+        output += "<br>Base 4: " + chars_base.join("");
+        chars_base = [];
+        for (var j in chars) {
+            var new_char = parseInt(chars[j], 10).toString(8);
+            chars_base.push(new_char);
+        }
+        output += "<br>Base 8: " + chars_base.join(" ");
+        output += "<br>Base 10: " + chars.join(" ");
+        chars_base = [];
+        for (var j in chars) {
+            var new_char = parseInt(chars[j], 10).toString(16);
+            chars_base.push("00".substr(0,2-new_char.length) + new_char);
+        }
+        output += "<br>Base 16: " + chars_base.join("");
 		break;
 	default:
 		console.log("You are most definitely a hacker. Please stop messing with this code.");
