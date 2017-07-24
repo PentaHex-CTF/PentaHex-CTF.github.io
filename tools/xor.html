@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+
+	<meta charset="utf-8">
+	<title>XOR Converter - PentaHex</title>
+
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Squada+One" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="/main.css">
+	<link rel="shortcut icon" type="image/png" href="/images/favicon.png" />
+
+</head>
+
+<body onload="setInterval(function(){update_type()}, 1000);">
+
+	<h1>PentaHex</h1>
+	<table style='width:100%;' id="menu">
+		<tr>
+			<td></td>
+			<td style='width:75px'>
+				<a href="/">HOME</a>
+			</td>
+			<td style='width:105px'>
+				<a href="/writeups/">WRITEUPS</a>
+			</td>
+			<td style='width:80px'>
+				<a href="/tools/">TOOLS</a>
+			</td>
+			<td style='width:115px'>
+				<a href="/resources/">RESOURCES</a>
+			</td>
+			<td style='width:110px'>
+				<a href="/tutorials/">TUTORIALS</a>
+			</td>
+			<td style='width:85px'>
+				<a href="/about.html">ABOUT</a>
+			</td>
+			<td></td>
+		</tr>
+	</table>
+
+	<div id="container1_w">
+		<div id="container2_w">
+			
+			<h2>XOR Calculator</h2>
+			
+			<p>Input text or a number in binary, decimal, or hexadecimal in both boxes to get the XOR.</p>
+			
+			<textarea autofocus="true" id="input1" class="input"></textarea>
+			<textarea id="input2" class="input"></textarea>
+            <br>
+			
+			<select id="dropdown1" class="dropdown">
+ 				<option value="binary">binary</option>
+ 				<option value="decimal">decimal</option>
+ 				<option value="hex">hexadecimal</option>
+ 				<option value="ascii" selected="selected">ASCII text</option>
+            </select>
+			<select id="dropdown2" class="dropdown">
+ 				<option value="binary">binary</option>
+ 				<option value="decimal">decimal</option>
+ 				<option value="hex">hexadecimal</option>
+ 				<option value="ascii" selected="selected">ASCII text</option>
+            </select>
+            <br>
+			<input class="button" type="checkbox" id="autodetect" checked="true">
+            <label for="autodetect">Autodetect input type</label>
+            <br>
+			<input class="button" type="checkbox" id="repeat_check">
+            <label for="repeat_check">Match input lengths&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <br>
+			<input class="button" type="button" value="UPDATE" onclick="update();" >
+			<p id="output" class="code"></p>
+  
+		</div>
+	</div>
+
+	<script>
+function update_type() {
+
+//makes sure autodetect is checked, ends functino if not
+if (!document.getElementById("autodetect").checked)
+    return;
+
+var input1 = document.getElementById('input1').value;
+var input2 = document.getElementById('input2').value;
+
+if (input1=="") {
+    //nothing... couldv 
+} else if (/^[01]*$/.test(input1)) {
+    document.getElementById('dropdown1').selectedIndex = 0;
+} else if (/^[0-9]*$/.test(input1)) {
+    document.getElementById('dropdown1').selectedIndex = 1;
+} else if (/^[0-9a-fA-F]*$/.test(input1)) {
+    document.getElementById('dropdown1').selectedIndex = 2;
+} else {
+    document.getElementById('dropdown1').selectedIndex = 3;
+}
+
+if (input2=="") {
+    //nothing... couldve just done a big if ! but lazy
+} else if (/^[01]*$/.test(input2)) {
+    document.getElementById('dropdown2').selectedIndex = 0;
+} else if (/^[0-9]*$/.test(input2)) {
+    document.getElementById('dropdown2').selectedIndex = 1;
+} else if (/^[0-9a-fA-F]*$/.test(input2)) {
+    document.getElementById('dropdown2').selectedIndex = 2;
+} else {
+    document.getElementById('dropdown2').selectedIndex = 3;
+}
+
+}
+
+function update() {
+
+//access the input textarea thing
+var input1 = document.getElementById('input1').value;
+var input2 = document.getElementById('input2').value;
+
+var skip = 0;
+if (input1 == "") {
+    input1 = "0";
+    skip = 1;
+}
+if (input2 == "") {
+    input2 = "0";
+    if (skip != 1)
+        skip = 2;
+    else
+        skip = 3;
+}
+
+var e1 = document.getElementById('dropdown1');
+var start1 = e1.options[e1.selectedIndex].value;
+
+var e2 = document.getElementById('dropdown2');
+var start2 = e2.options[e2.selectedIndex].value;
+
+//empty string to hold stuff later
+var output = "";
+
+switch (start1) {
+	case "binary":
+        if (/^[01]*$/.test(input1)) {
+            while (input1.length % 8 != 0) {
+                input1 = "0" + input1;
+            }
+        } else {
+            document.getElementById("output").innerHTML = "ERROR: Invalid binary number in first input.";
+            return;
+        }
+		break;
+	case "decimal":
+        if (/^[0-9]*$/.test(input1)) {
+            input1 = parseInt(input1).toString(2);
+        } else {
+            document.getElementById("output").innerHTML = "ERROR: Invalid decimal number in first input.";
+            return;
+        }
+		break;
+	case "hex":
+        if (/^[0-9a-fA-F]*$/.test(input1)) {
+            input1 = parseInt(input1,16).toString(2);
+        } else {
+            document.getElementById("output").innerHTML = "ERROR: Invalid hexadecimal number in first input.";
+            return;
+        }
+		break;
+	case "ascii":
+        var temp = "";
+        for (var i in input1) {
+            var binary = input1.charCodeAt(i).toString(2)
+            while (binary.length % 8 != 0) {
+                binary = "0" + binary;
+            }
+            temp += binary;
+        }
+        input1 = temp;
+		break;
+	default:
+		console.log("You are most definitely a hacker. Please stop messing with this code.");
+		break;
+};
+
+switch (start2) {
+	case "binary":
+        if (/^[01]*$/.test(input2)) {
+            while (input2.length % 8 != 0) {
+                input2 = "0" + input2;
+            }
+        } else {
+            document.getElementById("output").innerHTML = "ERROR: Invalid binary number in second input.";
+            return;
+        }
+		break;
+	case "decimal":
+        if (/^[0-9]*$/.test(input2)) {
+            input2 = parseInt(input2).toString(2);
+        } else {
+            document.getElementById("output").innerHTML = "ERROR: Invalid decimal number in second input.";
+            return;
+        }
+		break;
+	case "hex":
+        if (/^[0-9a-fA-F]*$/.test(input2)) {
+            input2 = parseInt(input2,16).toString(2);
+        } else {
+            document.getElementById("output").innerHTML = "ERROR: Invalid hexadecimal number in second input.";
+            return;
+        }
+		break;
+	case "ascii":
+        var temp1 = "";
+        for (var i in input2) {
+            var binary1 = input2.charCodeAt(i).toString(2)
+            while (binary1.length % 8 != 0) {
+                binary1 = "0" + binary1;
+            }
+            temp1 += binary1;
+        }
+        input2 = temp1;
+		break;
+	default:
+		console.log("You are most definitely a hacker. Please stop messing with this code.");
+		break;
+};
+
+if (document.getElementById('repeat_check').checked) {
+    if (input1.length < input2.length) {
+        while (input1.length < input2.length)
+            input1 += input1;
+        while (input1.length > input2.length)
+            input1 = input1.substr(1);
+    } else if (input2.length < input1.length) {
+        while (input2.length < input1.length)
+            input2 += input2;
+        while (input2.length > input1.length)
+            input2 = input2.substr(1);
+    }
+} else {
+    if (input1.length < input2.length) {
+        while (input1.length < input2.length)
+            input1 = "0" + input1;
+    } else if (input2.length < input1.length) {
+        while (input2.length < input1.length)
+            input2 = "0" + input2;
+    }
+}
+
+var xor = "";
+
+for (var i in input1) {
+    xor += ((parseInt(input1[i]) + parseInt(input2[i])) % 2).toString();
+}
+var xor_b2 = xor.toString();
+while (xor_b2.length < input1.length) {
+    xor_b2 = "0" + xor_b2;
+}
+xor = parseInt(xor_b2,2);
+if (skip > 0) { //resets xor and 0 input due to bugs...
+    if (skip == 1) {
+        xor = parseInt(input2,2);
+        xor_b2 = input2;
+        input1 = "0";
+        while (input1.length < input2.length) {
+            input1 += "0";
+        }
+    } else if (skip == 2) {
+        xor = parseInt(input1,2);
+        xor_b2 = input1;
+        input2 = "0";
+        while (input2.length < input1.length) {
+            input2 += "0";
+        }
+    } else {
+        input1 = "00000000";
+        input2 = "00000000";
+        xor = "0";
+        xor_b2 = "00000000";
+    }
+}
+
+var xor_txt = "";
+var xor_str = xor_b2;
+var xor_hex = "";
+for (var i = 0; i < xor_str.length; i += 8) {
+    xor_txt += String.fromCharCode(parseInt(xor_str.substr(i,8),2));
+    xor_hex += parseInt(xor_str.substr(i,4),2).toString(16);
+    xor_hex += parseInt(xor_str.substr(i+4,4),2).toString(16);
+}
+if (xor_hex.charAt(0) == "0") {
+    xor_hex = xor_hex.substr(1);
+}
+output = "Input 1: " + input1;
+output += "<br>Input 2: " + input2;
+output += "<br>XOR out: " + xor_b2;
+output += "<br><br>ASCII: " + xor_txt;
+output += "<br>Base 10: " + xor;
+output += "<br>Base 16: " + xor_hex;
+document.getElementById("output").innerHTML = output;
+
+};
+	</script>
+
+</body>
+
+</html>
+
