@@ -104,7 +104,7 @@ switch (start) {
             ascii += String.fromCharCode(chars[i]);
         }
         output += "Base 2: " + input;
-        output += "<br><br>ASCII: " + ascii;
+        output += "<br><br>ASCII: " + ascii.replace(/>/g,"&gt;").replace(/</g,"&lt;");
         output += "<br>Base 64: " + btoa(ascii);
         
         var chars_base = []; //chars array, but converted to a different base
@@ -150,7 +150,7 @@ switch (start) {
             ascii += String.fromCharCode(chars[i]);
         }
         output += "Base 4: " + input;
-        output += "<br><br>ASCII: " + ascii;
+        output += "<br><br>ASCII: " + ascii.replace(/>/g,"&gt;").replace(/</g,"&lt;");
         output += "<br>Base 64: " + btoa(ascii);
         
         var chars_base = []; //chars array, but converted to a different base
@@ -188,7 +188,7 @@ switch (start) {
             ascii += String.fromCharCode(chars[i]);
         }
         output += "Base 8: " + input;
-        output += "<br><br>ASCII: " + ascii;
+        output += "<br><br>ASCII: " + ascii.replace(/>/g,"&gt;").replace(/</g,"&lt;");
         output += "<br>Base 64: " + btoa(ascii);
         
         var chars_base = []; //chars array, but converted to a different base
@@ -219,7 +219,7 @@ switch (start) {
             ascii += String.fromCharCode(chars[i]);
         }
         output += "Base 10: " + input;
-        output += "<br><br>ASCII: " + ascii;
+        output += "<br><br>ASCII: " + ascii.replace(/>/g,"&gt;").replace(/</g,"&lt;");
         output += "<br>Base 64: " + btoa(ascii);
         
         var chars_base = []; //chars array, but converted to a different base
@@ -269,7 +269,7 @@ switch (start) {
             ascii += String.fromCharCode(chars[i]);
         }
         output += "Base 16: " + input;
-        output += "<br><br>ASCII: " + ascii;
+        output += "<br><br>ASCII: " + ascii.replace(/>/g,"&gt;").replace(/</g,"&lt;");
         output += "<br>Base 64: " + btoa(ascii);
         
         var chars_base = []; //chars array, but converted to a different base
@@ -301,7 +301,7 @@ switch (start) {
 		var chars = []; //will become an array of char codes in decimal
 		var ascii = atob(input); //base 64 to ascii
 		output += "Base 64: " + btoa(ascii);
-		output += "<br><br>ASCII: " + ascii;
+		output += "<br><br>ASCII: " + ascii.replace(/>/g,"&gt;").replace(/</g,"&lt;");
 		
 		for (var i = 0; i < ascii.length; i ++) { //loops through ascii
 			chars.push(ascii.charCodeAt(i).toString()); //adds char code to chars array
@@ -336,7 +336,7 @@ switch (start) {
 	case "ascii":
         var chars = []; //will become an array of char codes in decimal
 		var ascii = input; //base 64 to ascii
-		output += "ASCII: " + ascii;
+		output += "ASCII: " + ascii.replace(/>/g,"&gt;").replace(/</g,"&lt;");
 		output += "<br><br>Base 64: " + btoa(ascii);
 		
 		for (var i = 0; i < ascii.length; i ++) { //loops through ascii
