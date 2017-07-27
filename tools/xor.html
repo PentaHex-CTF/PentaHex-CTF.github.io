@@ -4,7 +4,7 @@
 <head>
 
 	<meta charset="utf-8">
-	<title>XOR Converter - PentaHex</title>
+	<title>XOR Calculator - PentaHex</title>
 
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Squada+One" rel="stylesheet">
@@ -297,7 +297,7 @@ if (xor_hex.charAt(0) == "0") {
 output = "Input 1: " + input1;
 output += "<br>Input 2: " + input2;
 output += "<br>XOR out: " + xor_b2;
-output += "<br><br>ASCII: " + xor_txt;
+output += "<br><br>ASCII: " + xor_txt.replace(/>/g,"&gt;").replace(/</g,"&lt;");
 output += "<br>Base 10: " + xor;
 output += "<br>Base 16: " + xor_hex;
 document.getElementById("output").innerHTML = output;
