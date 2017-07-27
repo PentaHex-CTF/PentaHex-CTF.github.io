@@ -45,7 +45,7 @@
 	<div id="container1_w">
 		<div id="container2_w">
 			
-			<h2>XOR Calculator</h2>
+			<h2>XOR Finder</h2>
 			
 			<p>Input text or a number in binary, decimal, or hexadecimal. Enter the bit length to brute force.</p>
 			
@@ -58,16 +58,24 @@
  				<option value="hex">hexadecimal</option>
  				<option value="ascii" selected="selected">ASCII text</option>
             </select>
+            
             <br>
             <br>
             <input type="number" value="8" style="width:25px;" id="bit_len">
             <label for="bit_len">bit length&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            
             <br>
             <input type="checkbox" id="repeat_check" checked="true">
             <label for="repeat_check">Repeat to match length&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            
             <br>
             <input type="checkbox" id="ascii_check" checked="true">
             <label for="ascii_check">Filter ASCII (recommended)</label>
+            
+            <br>
+            <input type="checkbox" id="show_bin">
+            <label for="show_bin">Show binary XOR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            
             <br>
             <input type="checkbox" id="filter_check">
             <label for="filter_check">Filter string: 
@@ -106,6 +114,7 @@ var repeat = document.getElementById("repeat_check").checked;
 var useFilter = document.getElementById("filter_check").checked;
 var filterAscii = document.getElementById("ascii_check").checked;
 var filter = document.getElementById("filter").value;
+var showBin = document.getElementById("show_bin").checked;
 
 switch (start1) {
 	case "binary":
@@ -214,7 +223,7 @@ for (var i in nums) {
             }
         }
         if (ascii.includes(filter) || !useFilter) {
-            document.getElementById("output").innerHTML += (nums[i] + ": " + ascii + "<br>");
+            document.getElementById("output").innerHTML += ((showBin ?  nums[i] + ": " : "") + ascii + "<br>");
         }
     }
 }
