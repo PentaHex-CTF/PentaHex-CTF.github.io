@@ -47,7 +47,7 @@
 
             <h2>Caesar Cipher</h2>
 
-            <textarea id="input"></textarea>
+            <textarea autofocus="true" class="input" id="input"></textarea>
             
             <br>
             
@@ -84,7 +84,7 @@
                     }
                 }
 
-                finalOutput += (N + ": " + output + "<br>");
+                finalOutput += (N + ": " + output.replace(/>/g,"&gt;").replace(/</g,"&lt;") + "<br>");
 
             }
             if (document.getElementById("output").innerHTML != finalOutput) {
