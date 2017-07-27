@@ -124,7 +124,7 @@
                 ascii += String.fromCharCode(parseInt(hex.substr(i,2),16));
             }
             
-            finalResult = "Base " + startBase.toString() + ": " + document.getElementById("number").value + "<br>Base " + endBase + ": " + result + "<br><br>ASCII: " + ascii;
+            finalResult = "Base " + startBase.toString() + ": " + document.getElementById("number").value + "<br>Base " + endBase + ": " + result + "<br><br>ASCII: " + ascii.replace(/>/g,"&gt;").replace(/</g,"&lt;");
             
             document.getElementById("output").innerHTML = finalResult;
         }
