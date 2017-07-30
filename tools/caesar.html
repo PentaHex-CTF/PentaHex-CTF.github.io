@@ -61,34 +61,34 @@
         </div>
     </div>
 
-    <script>
-        function update() {
-            var input = document.getElementById("input").value;
-            var lower = "abcdefghijklmnopqrstuvwxyz";
-            var upper = lower.toUpperCase();
-            var finalOutput = "";
+    <script> //Function created that is used by the button to update outputted data into decrypted Caesar Cipher
+        function update() { //Function keyword _ Named update
+            var input = document.getElementById("input").value; //Declare variable input which stores the user inputted text
+            var lower = "abcdefghijklmnopqrstuvwxyz"; //Declare the set of characters within the cipher
+            var upper = lower.toUpperCase(); //Values that are inputted as uppercase are outputted as uppercase
+            var finalOutput = ""; //Stores placeholder that will act as final output
 
-            for (var N = 1; N < 26; N++) {
+            for (var N = 1; N < 26; N++) { //Loops 1 by 1 through every rotatation
 
-                var output = "";
-                for (var i in input) {
-                    var l = input[i];
-                    if (l.match(/[a-z]/i)) {
-                        if (l.toLowerCase() === l) {
-                            output += lower[(lower.indexOf(l) + N) % 26];
-                        } else {
-                            output += upper[(upper.indexOf(l) + N) % 26];
+                var output = ""; //Each output per line
+                for (var i in input) { //!??!!?
+                    var l = input[i]; //Declare input = l
+                    if (l.match(/[a-z]/i)) { //If input matches alphabet array
+                        if (l.toLowerCase() === l) { //If lowercase
+                            output += lower[(lower.indexOf(l) + N) % 26]; //increase the rotation of each letter by 1 and line number
+                        } else { //If uppercase
+                            output += upper[(upper.indexOf(l) + N) % 26]; //Same as above but for uppercase letters and line number
                         }
                     } else {
-                        output += l;
+                        output += l; //Input is = to the value of the rotation. Continue looping through more lines
                     }
                 }
 
-                finalOutput += (N + ": " + output.replace(/>/g,"&gt;").replace(/</g,"&lt;") + "<br>");
+                finalOutput += (N + ": " + output.replace(/>/g,"&gt;").replace(/</g,"&lt;") + "<br>"); //Line number + : + !?!??!!?!?!
 
             }
-            if (document.getElementById("output").innerHTML != finalOutput) {
-                document.getElementById("output").innerHTML = finalOutput;
+            if (document.getElementById("output").innerHTML != finalOutput) { //Calls the blank paragraph and inputs the final output
+                document.getElementById("output").innerHTML = finalOutput; // Error checking?!?!?!
             }
         }
     </script>
