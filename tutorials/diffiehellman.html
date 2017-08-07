@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		
+		<meta charset="utf-8">
+		<title>Character Codes - PentaHex</title>
+		
+		<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Squada+One" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="/main.css">
+		<link rel="shortcut icon" type="image/png" href="/images/favicon.png"/>
+		
+	</head>
+	<body>
+		
+		<h1>PentaHex</h1>
+		<table style='width:100%;' id="menu">
+			<tr>
+				<td></td>
+				<td style='width:75px'>
+					<a href="/">HOME</a>
+				</td>
+				<td style='width:105px'>
+					<a href="/writeups/">WRITEUPS</a>
+				</td>
+				<td style='width:80px'>
+					<a href="/tools/">TOOLS</a>
+				</td>
+				<td style='width:115px'>
+					<a href="/resources/">RESOURCES</a>
+				</td>
+				<td style='width:110px'>
+					<a href="/tutorials/">TUTORIALS</a>
+				</td>
+				<td style='width:85px'>
+					<a href="/about.html">ABOUT</a>
+				</td>
+				<td></td>
+			</tr>
+		</table>
+		
+		<div id="container1_w">
+        <div id="container2_w">
+            <h2>Diffie-Hellman Key Exchange</h2>
+            <p>The Diffie-Hellmen Key Exchange is a method of generating a shared secret (for a key) such that the secret can't been seen by someone snooping on the communication. It's good for use on unencrypted channels, to create a key to use for encryption.</p>
+            <p>This key exchange is extremely secure when used correctly and is an example of perfect forward security. Someone else seeing the key exchange will have no way to break in because the key is never communicated!</p>
+            <h3>Algorithm</h3>
+            <p>On to the algorithm. Let's say Alice and Bob want to create a key to encrypt further communications with. They will use the Diffie-Hellman Key Exchange:</p>
+            <ol>
+                <li>Alice decides two shared prime numbers, a base, g and a modulus, p. Alice sends these numbers to Bob.<br>The base, g, must be a primitive root modulo p. Note that since p is prime, this simply means that the first p-1 powers of g modulus p are the numbers 1 to p-1, in any order.</li>
+                <li>Alice decides a secret number a. Alice computes A = g<sup>a</sup> modulus p. Alice sends A to Bob.</li>
+                <li>Bob has a secret number b. Bob computes B = g<sup>b</sup> modulus p. Bob sends B to Alice.</li>
+                <li>Alice takes B and finds the key by doing B<sup>a</sup> modulus p.</li>
+                <li>Bob takes A and finds the key by doing A<sup>b</sup> modulus p. This will be the same number Alice found.</li>
+                <li>Now both Alice and Bob know the key, and they can use it to encrypt!</li>
+            </ol>
+            <h3>Example 1</h3>
+            <p>Let's do this with some numbers.</p>
+            <ol>
+                <li>The two shared prime numbers are g=13 and p=37. Note that the base 13 is a primitive root modulus 37, since the first 36 powers of 13, modulus 37 are the numbers 1 to 36 out of order.</li>
+                <li>Alice's secret number is 19. Alice computes A = 13<sup>19</sup> modulus 37 = 24. Alice sends 24 to Bob.</li>
+                <li>Bob's secret number is 93. Bob computes B = 13<sup>93</sup> modulus 37 = 23. Bob sends 23 to Alice.</li>
+                <li>Alice takes 23 and finds the key by doing 23<sup>19</sup> modulus 37 = 14.</li>
+                <li>Bob takes 24 and finds the key by doing 24<sup>93</sup> modulus 37 = 14.</li>
+            </ol>
+            <p>Why does this work? How can Alice and Bob both get the same number without know the other's secret number? Well, they both calculated the same number in a different order.</p>
+            <p>Alice calculated (g<sup>a</sup> mod p)<sup>b</sup> mod p = g<sup>ab</sup> mod p.<br>Bob calculated (g<sup>b</sup> mod p)<sup>a</sup> mod p = g<sup>ab</sup> mod p.</p>
+            <p>You might still be wondering how this is secure. The prime numbers g and p, and the calculated numbers A and B are visible to anyone who is watching the unencrypted communications! Even with all these numbers, if large primes and secret numbers are chosen, you will need to know either a or b to get the key.</p>
+            <p>This is because doing the function of a power then a modulus only goes one way. It's easy enough to calculate A or B, but getting the secret number back is difficult enough to be secure. Even with both g and p, a brute force would be needed to attempt to get the secret number back (so choose a large number!). </p>
+            <p>Let's look at our previous example.<br>We have g=13, p=37, A=24, B=93. To find a or b, we would need to solve one of these equations: 13<sup>a</sup> modulus 37 = 24 or 13<sup>b</sup> modulus 37 = 23.</p>
+            <p>In this example, we used very small numbers. We could test each value of a, starting at 1 and incrementing until we get the number. Since a=19 and b=93, you can calculate them both extremely quickly. Additionally, using such a low modulus means there are only 37 possible keys, which can be brute forced as well.</p>
+            <p>Clearly, with such small numbers, Diffie-Hellman isn't safe from a brute force. That's why it is best practice to choose 2048 bit primes (1400 decimal digits), and unique primes for each exchange.</p>
+            <h3>Example 2</h3>
+            <p>Let's do a programming example, to see how we could use code to implement this efficiently. In this example, we will be using Python, but there are equivalent functions in other languages.</p>
+            <ol>
+                <li>First, let's choose a prime for the modulus. Let's keep it small, but big enough to be unrealistic to do by hand: p=137.<br>
+                To check if this is prime, we can use the following code:<br>
+                <p class="code">import math<br>for i in range(2,math.ceil(math.sqrt(137))):<br>&nbsp;&nbsp;&nbsp;&nbsp;if 137.0/i == math.floor(137.0/i):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print ('not prime')</p>
+                The code shows that 137 is prime by checking if it is divisible by any of the numbers until its square root. Since it isn't we can continue.
+                </li>
+                <br>
+                <li>
+                Next, we need to choose a prime for the base. It needs to be a primitive root modulo 137.<br>
+                What we need to do is choose a random prime and loop through its first 137 powers. Let's take a random prime, say g=19, and test it:<br>
+                <p class="code">
+                count=0<br>
+                z=0<br>
+                while z != 1:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;count += 1<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;z = pow (19, count, 137)<br>
+                print (count)
+                </p>
+                What this is doing is going through the powers of 19 modulus 137 until the power is 1. When this happens, the powers will loop (note than the 0th power of anything is 1).<br><br>
+                When the power is 1, the powers will repeat. If the value of count isn't 136 at the end (137-1) then it didn't go through all the numbers, and some are left out.<br><br>
+                Note the syntax of the pow() command. It does 19 to the power of count, and additionally modulus 137.<br><br>
+                The program outputs 68, meaning it only went through 68 numbers, not all 136. We will need to try a new number, g=31. Running it through the program is successful, and it can be our value for the base. (We would also need to test if it is prime, but since it's so low, we don't have to).
+                </li>
+                <br>
+                <li>
+                Let's set a = 9301 and b = 7523. These are the secret numbers and aren't transmitted anywhere.
+                </li>
+                <br>
+                <br>
+                <li>
+                To calculate A and B, we can use that same pow() command as before. The syntax is pow(base, power, modulus):
+                <p class="code">
+                A = pow (31, 9301, 137) # 55<br>
+                B = pow (31, 7523, 137) # 6
+                </p>
+                NOTE: The text after the # is ignored because it is a comment.<br>
+                </li>
+                <br>
+                <li>Now that we have A and B, those numbers would be transmitted.</li>
+                <br>
+                <li>We now need to do B<sup>a</sup> and A<sup>b</sup>, both modulus 137.<br>
+                <p class="code">
+                key = pow ( 6, 9301, 137) # 51<br>
+                key = pow (55, 7523, 137) # 51
+                </p>
+                </li>
+                <br>
+                <li>Now we have the key! Although these numbers were really low, it went through all the necessary precautions, checking if the numbers are prime, and the base is a primitive root, and calculating A, B, and the key easily!</li>
+            </ol>
+        </div>
+		</div>
+		
+	</body>
+</html>
