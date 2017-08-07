@@ -50,13 +50,13 @@
             <p>The scientific notation of a number changes when the base changes. The scientific notation of 354<sub>6</sub> would be 3&times;6<sup>2</sup>+5&times;6<sup>1</sup>+4.</p>
             <p>An important thing to note, each digit in a number has to be less than its base. 5 can't be a digit in base 4, and 7 can't be a digit in base 7.</p>
             
-            <hr>
+            <h3>Adding Numbers</h3>
             
             <p>Now on to adding numbers of a different base. Essentially, this is the same as adding in base 10. Let's do an example in hexadecimal.</p>
             <p class="code">&nbsp;45<br>+3D<br>---<br>&nbsp;84</p>
             <p>The 5 and D add to 12. (E, F, 10, 11, 12) The units digit is 2. Then we add 4 + 3  + 1 = 8. Our tens digit is 8. Our answer is 0x82. <br>NOTE: Hexadecimal numbers start with 0x and then the number, rather than the 16 subscript.</p>
             
-            <hr>
+            <h3>Converting to Base 10</h3>
             
             <p>We can start with converting numbers from any base to base 10. This is very simple, just write it in scientific notation, and simplify.</p>
             <p>Let's say we want to convert 1010<sub>2</sub> to base 10.</p>
@@ -64,13 +64,27 @@
                 <li>First, we write it in scientific notation: 1&times;2<sup>3</sup>+0&times;2<sup>2</sup>+1&times;2<sup>1</sup>+0.</li>
                 <li>Then, we simplify: 8 + 2 = 10.</li>
             </ol>
-            <p>We're done! It's as simple as that! Converting to another base will be a bit more difficult, though. There are a few steps to go through:</p>
+            <p>We're done! It's as simple as that! You can also think of it as a table:</p>
+            <table>
+                <tr>
+                    <td>Digit</td><td>1</td><td>0</td><td>1</td><td>0</td>
+                </tr>
+                <tr>
+                    <td>Value</td><td>8</td><td>4</td><td>2</td><td>1</td>
+                </tr>
+                <tr>
+                    <td>Sum</td><td>8 +</td><td>0 +</td><td>2 +</td><td>0</td><td>= 10</td>
+                </tr>
+            </table>
+            
+            <h3>Converting from Base 10</h3>
+            <p>Converting to another base will be a bit more difficult, though. There are a few steps to go through:</p>
             <ol>
                 <li>Divide your number by the base and record the remainder. This is the rightmost digit.</li>
                 <li>Divide the answer from the previous division by the base again. This digit goes to the left of the last one.</li>
                 <li>Keep dividing and recording the remainders until the number is less than the base. This is the leftmost digit.</li>
             </ol>
-            <p>Don't worry if this makes no sense. An example will make this a lot clearer! Let's convert 144 to base 5.</p>
+            <p>Essentially, you're just going to divide by the base and get the remainder. Let's convert 144 to base 5.</p>
             <ol>
                 <li>We divide our number by the base: 144 / 5 = 28, remainder 4. ___4</li>
                 <li>28 / 5 = 5, remainder 3. __34</li>
@@ -78,7 +92,46 @@
                 <li>1 is less than the base, 5. We use it as the leftmost digit: 1034</li>
                 <li>Our completed conversion is 1034<sub>5</sub></li>
             </ol>
-            <p>Changing bases is very tedious work, especially with large numbers. There's a lot of times where you want to change a number's base fast. That's why we've created a <a href="/tools/baseconverter.html">base converter</a>. It can change any number from one base to another. Simply enter the number in one base (make sure each of the digits are valid) and enter it's base in the start base spot. Then, enter the base you want to convert it to in the end base spot. It's a helpful tool for large numbers and quick conversions!</p>
+            <p>Notice how since these are all remainders of the base, all the numbers must be less!</p>
+            <h3>Examples</h3>
+            <p>First, let's convert 0xDFA2 from hexadecimal (base 16) to decimal (base 10).</p>
+            <ol>
+                <li>The first digit adds to: D &times; 16<sup>3</sup> = 13 &times; 4096 = 53248</li>
+                <li>The second digit adds to: F &times; 16<sup>2</sup> = 15 &times; 256 = 3840</li>
+                <li>The third digit adds to: A &times; 1 = 10 &times; 16 = 160</li>
+                <li>The final digit is just 2 &times; 1 = 2</li>
+                <li>Adding them all up, we get 53248 + 3840 + 160 + 2 = 57250</li>
+            </ol>
+            <p>Now let's try converting 119 from decimal to base 3.</p>
+            <ol>
+                <li>119 / 3 = 39 R 2</li>
+                <li>39 / 3 = 13 R 0</li>
+                <li>13 / 3 = 4 R 1</li>
+                <li>4 / 3 = 1 R 1</li>
+                <li>1 / 3 = 0 R 1</li>
+                <li>Our number is 11102<sub>3</sub></li>
+            </ol>
+            <p>Let's convert 10011100<sub>2</sub> to base 4 and then to base 16 quickly, using a special trick.</p>
+            <ol>
+                <li>For this, let's look at a special property of these bases.<br><br>Since 4 is a power of 2 and 16 is a power of 4, we can group these up in sections.</li>
+                <li>For the first part, we will split up 10011100 into groups of 2: 10 01 11 00. We can convert each of these numbers into base 4 individually: 3 1 4 0. Just put these numbers together, 2130<sub>4</sub>, and you have converted it to base 4!</li>
+                <li>For the next part, we spit up 3140 into groups of 2: 21 30. We can convert these to base 16 individually again: 9 C(12). Finally we have our base 16 number, 0x9C.</li>
+            </ol>
+            <p>2 digits, such as 10, in binary can range from 0-3, just like 1 digit in base 4. 2 digits in base 4 can range from 0-15, just like 1 digit in base 16. This new strategy allows us to only have to deal with small numbers. It works for all powers. 2 digits in base 3 is 1 digit in base 9, and 3 digits in base 3 is 1 digit in base 27.</p>
+            <p></p>
+            <p>As a final challenge, let's convert 1737<sub>8</sub> from base 8 to base 29.</p>
+            <p>We'll need to divide this into 2 parts, converting from base 8 to base 10, then from base 10 to base 29.</p>
+            <ol>
+                <li>Let's do this in scientific notation. 1 &times; 8<sup>3</sup> + 7 &times; 8<sup>2</sup> + 3 &times; 8 + 7 = 512 + 7 &times; 64 + 3 &times; 8 + 7 = 512 + 448 + 24 + 7 = 991</li>
+                <li>Now, to convert to base 27, we need to repeatedly divide by 27:</li>
+                <li>991 / 27 = 36 R 19</li>
+                <li>36 / 27 = 1 R 9</li>
+                <li>1 / 27 = 0 R 1</li>
+                <li>Our number is 19_. To write 19 as a single digit, we could either count up for A=10, B=11, and on, or get the 10th letter in the alphabet since 9 + 10 = 19 (work with me please). Since the 10th letter is J, our number is 19J. Weird!</li>
+            </ol>
+            <h3>Base Converter?</h3>
+            <p>Changing bases is very tedious work, especially with large numbers. There's a lot of times where you want to change a number's base fast. That's why we've created a <a href="/tools/baseconverter.html">base converter</a>. It can change any number from one base to another.</p>
+            <p>Simply enter the number in one base (make sure each of the digits are valid) and enter it's base in the start base spot. Then, enter the base you want to convert it to in the end base spot. It's a helpful tool for large numbers and quick conversions!</p>
         </div>
 		</div>
 		
