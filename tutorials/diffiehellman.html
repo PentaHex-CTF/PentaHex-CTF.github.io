@@ -76,7 +76,8 @@
             <ol>
                 <li>First, let's choose a prime for the modulus. Let's keep it small, but big enough to be unrealistic to do by hand: p=137.<br>
                 To check if this is prime, we can use the following code:<br>
-                <p class="code">import math<br>for i in range(2,math.ceil(math.sqrt(137))):<br>&nbsp;&nbsp;&nbsp;&nbsp;if 137.0/i == math.floor(137.0/i):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print ('not prime')</p>
+                <p class="code">import math<br>for i in range(2,int(math.ceil(math.sqrt(137))):<br>&nbsp;&nbsp;&nbsp;&nbsp;if 137.0/i == math.floor(137.0/i):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print ('not prime')<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exit
+                <br>print ('prime')</p>
                 The code shows that 137 is prime by checking if it is divisible by any of the numbers until its square root. Since it isn't we can continue.
                 </li>
                 <br>
@@ -101,7 +102,6 @@
                 Let's set a = 9301 and b = 7523. These are the secret numbers and aren't transmitted anywhere.
                 </li>
                 <br>
-                <br>
                 <li>
                 To calculate A and B, we can use that same pow() command as before. The syntax is pow(base, power, modulus):
                 <p class="code">
@@ -119,7 +119,6 @@
                 key = pow (55, 7523, 137) # 51
                 </p>
                 </li>
-                <br>
                 <li>Now we have the key! Although these numbers were really low, it went through all the necessary precautions, checking if the numbers are prime, and the base is a primitive root, and calculating A, B, and the key easily!</li>
             </ol>
         </div>
