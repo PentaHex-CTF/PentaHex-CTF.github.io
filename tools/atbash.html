@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+
+    <meta charset="utf-8">
+    <title>Atbash Cipher - PentaHex</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Squada+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/main.css">
+    <link rel="shortcut icon" type="image/png" href="/images/favicon.png" />
+
+</head>
+
+<body>
+
+    <h1>PentaHex</h1>
+    <table style='width:100%;' id="menu">
+        <tr>
+            <td></td>
+            <td style='width:75px'>
+                <a href="/">HOME</a>
+            </td>
+            <td style='width:105px'>
+                <a href="/writeups/">WRITEUPS</a>
+            </td>
+            <td style='width:80px'>
+                <a href="/tools/">TOOLS</a>
+            </td>
+            <td style='width:115px'>
+                <a href="/resources/">RESOURCES</a>
+            </td>
+            <td style='width:110px'>
+                <a href="/tutorials/">TUTORIALS</a>
+            </td>
+            <td style='width:85px'>
+                <a href="/about.html">ABOUT</a>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+
+    <div id="container1_w">
+        <div id="container2_w">
+
+            <h2>Atbash Cipher</h2>
+
+            <textarea autofocus="true" class="input" id="input"></textarea>
+            
+            <br>
+            
+            <input class="button" type="button" value="UPDATE" onclick="update();" />
+            
+            <p id="output" class="code"></p>
+            
+            <p>The Atbash cipher is a simple cipher that reverses the alphabet. A becomes Z, B becomes Y, and so on.</p>
+
+        </div>
+    </div>
+
+    <script>
+        function update() {
+            var input = document.getElementById("input").value;
+            var lower = "abcdefghijklmnopqrstuvwxyz";
+            var upper = lower.toUpperCase();
+
+            var output = "";
+            for (var i in input) {
+                var l = input[i];
+                if (l.match(/[a-z]/i)) {
+                    if (l.toLowerCase() === l) {
+                        output += lower[25-lower.indexOf(l)];
+                    } else {
+                        output += upper[25-upper.indexOf(l)];
+                    }
+                } else {
+                    output += l;
+                }
+            }
+
+            output = output.replace(/>/g,"&gt;").replace(/</g,"&lt;");
+            
+            if (document.getElementById("output").innerHTML != output) {
+                document.getElementById("output").innerHTML = output;
+            }
+        }
+    </script>
+
+</body>
+
+</html>
