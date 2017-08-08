@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+
+    <meta charset="utf-8">
+    <title>Affine Cipher - PentaHex</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Squada+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/main.css">
+    <link rel="shortcut icon" type="image/png" href="/images/favicon.png" />
+
+</head>
+
+<body>
+
+    <h1>PentaHex</h1>
+    <table style='width:100%;' id="menu">
+        <tr>
+            <td></td>
+            <td style='width:75px'>
+                <a href="/">HOME</a>
+            </td>
+            <td style='width:105px'>
+                <a href="/writeups/">WRITEUPS</a>
+            </td>
+            <td style='width:80px'>
+                <a href="/tools/">TOOLS</a>
+            </td>
+            <td style='width:115px'>
+                <a href="/resources/">RESOURCES</a>
+            </td>
+            <td style='width:110px'>
+                <a href="/tutorials/">TUTORIALS</a>
+            </td>
+            <td style='width:85px'>
+                <a href="/about.html">ABOUT</a>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+
+    <div id="container1_w">
+        <div id="container2_w">
+
+            <h2>Affine Cipher</h2>
+
+            <textarea autofocus="true" class="input" id="input"></textarea>
+            
+            <br>
+            
+            <input class="button" type="button" value="ENCRYPT" onclick="update('encrypt');" />
+            
+            <input class="button" type="button" value="DECRYPT" onclick="update('decrypt');" />
+            
+            <p id="output" class="code"></p>
+            
+            <p>The Affine cipher is a monoalphabetic cipher, meaning that it uses the same substitution for each character in the message.</p>
+            <p>The encrypt goes through each letter and does (letter*a + b) mod 26. There are only 12 values for a because a must be coprime with 26 (the modular multiplicative inverse of a modulus 26 is calculated), but there are 26 value for b. The decrypt does this in reverse. The brute force goes through all 312 possibilities.</p>
+
+        </div>
+    </div>
+
+    <script>
+        function update(action) {
+            var input = document.getElementById("input").value;
+            var lower = "abcdefghijklmnopqrstuvwxyz";
+            var upper = lower.toUpperCase();
+            
+            var output = "";
+            
+            var getModInv = function(a, modulus) {
+                var inv = 2;
+                while ((a * inv) % modulus !== 1) {
+                    inv ++;
+                }
+                return inv;
+            };
+            
+            var gen_encrypt_alphabet = function(a,b) {
+                var alphabet = "abcdefghijklmnopqrstuvwxyz";
+                var encrypted = "";
+                
+                for (var i in alphabet) {
+                    var l = alphabet[i]; //letter
+                    encrypted += alphabet[(a*lower.indexOf(l)+b)%26]; //a*number + b mod 26 is affine algorithm
+                }
+                return encrypted;
+            };
+            
+            var gen_decrypt_alphabet = function(a,b) {
+                var alphabet = "abcdefghijklmnopqrstuvwxyz";
+                var decrypted = "";
+                var modInv = getModInv(a,26);
+                for (var i in alphabet) {
+                    var l = alphabet[i]; //letter
+                    decrypted += alphabet[(modInv*(lower.indexOf(l)-b+26))%26]; //a*number + b mod 26 is affine algorithm
+                }
+                return decrypted;
+            };
+            
+            var encrypt_affine = function(message, encrypted_alphabet) {
+                var encrypted = "";
+                
+                for (var i in message) {
+                    var l = message[i]; //letter
+                    if (l.match(/[a-z]/i)) {
+                        if (l.toLowerCase() === l) { //lowercase
+                            encrypted += encrypted_alphabet[lower.indexOf(l)]; //a*number + b mod 26 is affine algorithm
+                        } else {
+                            encrypted += encrypted_alphabet.toUpperCase()[upper.indexOf(l)];
+                        }
+                    } else {
+                        encrypted += l;
+                    }
+                }
+                return encrypted;
+            };
+            
+            var decrypt_affine = function(message, decrypted_alphabet)
+            {
+                var decrypted = "";
+                
+                for (var i in message) {
+                    var l = message[i]; //letter
+                    if (l.match(/[a-z]/i)) {
+                        if (l.toLowerCase() === l) { //lowercase
+                            decrypted += decrypted_alphabet[lower.indexOf(l)]; //a*number + b mod 26 is affine algorithm
+                        } else {
+                            decrypted += decrypted_alphabet.toUpperCase()[upper.indexOf(l)];
+                        }
+                    } else {
+                        decrypted += l;
+                    }
+                }
+                return decrypted;
+            };
+            if (action == "encrypt") {
+                a_opts = [1, 3, 5, 7, 9, 11, 15, 17, 19, 21, 23, 25]
+                for (var i in a_opts) {
+                    var a = a_opts[i];
+                    for (var b = 0; b < 26; b ++) {
+                        var alph = gen_encrypt_alphabet(a,b);
+                        output += a + ", " + b + ": ";
+                        output += encrypt_affine(input, alph).replace(/>/g,"&gt;").replace(/</g,"&lt;");
+                        output += "<br>";
+                    }
+                }
+            } else if (action == "decrypt") {
+                a_opts = [1, 3, 5, 7, 9, 11, 15, 17, 19, 21, 23, 25]
+                for (var i in a_opts) {
+                    var a = a_opts[i];
+                    for (var b = 0; b < 26; b ++) {
+                        var alph = gen_decrypt_alphabet(a,b);
+                        output += a + ", " + b + ": ";
+                        output += decrypt_affine(input, alph).replace(/>/g,"&gt;").replace(/</g,"&lt;");
+                        output += "<br>";
+                    }
+                }
+            }
+            
+            if (document.getElementById("output").innerHTML != output) {
+                document.getElementById("output").innerHTML = output;
+            }
+        }
+    </script>
+
+</body>
+
+</html>
