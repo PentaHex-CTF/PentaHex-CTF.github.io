@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		
+		<meta charset="utf-8">
+		<title>XOR - PentaHex</title>
+		
+		<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Squada+One" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="/main.css">
+		<link rel="shortcut icon" type="image/png" href="/images/favicon.png"/>
+		
+	</head>
+	<body>
+		
+		<h1>PentaHex</h1>
+		<table style='width:100%;' id="menu">
+			<tr>
+				<td></td>
+				<td style='width:75px'>
+					<a href="/">HOME</a>
+				</td>
+				<td style='width:105px'>
+					<a href="/writeups/">WRITEUPS</a>
+				</td>
+				<td style='width:80px'>
+					<a href="/tools/">TOOLS</a>
+				</td>
+				<td style='width:115px'>
+					<a href="/resources/">RESOURCES</a>
+				</td>
+				<td style='width:110px'>
+					<a href="/tutorials/">TUTORIALS</a>
+				</td>
+				<td style='width:85px'>
+					<a href="/about.html">ABOUT</a>
+				</td>
+				<td></td>
+			</tr>
+		</table>
+		
+		<div id="container1_w">
+        <div id="container2_w">
+            <h2>XOR</h2>
+            <p>The XOR gate, or Exclusive OR gate, is a logical operation. It's best thought about in binary (only 0 and 1).</p>
+            <p>The XOR has the following properties: </p>
+            <ul>
+                <li>0 XOR 1 returns true (1)</li>
+                <li>1 XOR 0 returns true (1)</li>
+                <li>0 XOR 0 returns false (0)</li>
+                <li>1 XOR 1 returns false (0)</li>
+            </ul>
+            <p>The XOR is the equivalent of adding the numbers in base 2, modulus 2: (1 + 1) mod 2 = 0, (1 + 0) mod 2 = 1</p>
+            <p>The XOR logic is either one, but not both. It's an exclusive OR, because it excludes the true case of true OR true, which is ambiguous.</p>
+            <p>In a chain of XORs, such as 1 XOR 0 XOR 1 XOR 1, an odd number of the inputs need to be true. For example, 1 XOR 0 XOR 1 XOR 1 = 1 because 3 inputs are 1 (odd). 1 XOR 0 XOR 1 XOR 0 = 0 because 2 inputs are 1 (even).</p>
+            <p>Although the XOR is a bitwise operation for binary numbers, it can be done on numbers in different bases by converting to binary and on strings by writing them by <a href="/tutorials/charcodes.html">character codes</a> in binary.</p>
+            <h3>Example 1</h3>
+            <p>What is 1101101<sub>2</sub> XOR 1001010101<sub>2</sub>?</p>
+            <ol>
+                <li>First, align the bits to be the same length (by prepending 0s): 0001101101<sub>2</sub> XOR 1001010101<sub>2</sub></li>
+                <li>Then, go bit by bit (digit by digit) and do the XOR operation: 1000111000<sub>2</sub></li>
+            </ol>
+            <p>An XOR in binary is super simple! Let's try it on decimal numbers.</p>
+            <h3>Example 2</h3>
+            <p>What is 32 XOR 23?</p>
+            <p>The first part of this problem is converting 32 and 23 from base 10 to base 2. We're going to do this quickly, but if you want to learn more about converting between bases and number bases in general, see <a href="/tutorials/numberbases.html">this tutorial</a></p>
+            <ol>
+                <li>Converting 32 to base 2 is simple, since it is 2^5. It's the fifth power, so there are 5 zeroes: 100000. If doesn't make sense, recall that the third power of 10 (1000) has 3 zeroes in base 10.</li>
+                <li>Convert 23 to base 2 is dividing it by 2 repeatedly.<br>23 / 2 = 11 R 1<br>11 / 2 = 5 R 1<br>5 / 2 = 2 R 1<br>2 / 2 = 1 R 0<br>1 / 2 = 0 R 1<br>Our converted number is 10111<sub>2</sub>. </li>
+            </ol>
+            <p>Now that we have two base 2 numbers, getting the XOR is as simple as the last problem.</p>
+            <p>Notice that doing an XOR with a 0 from any digit is that digit, so the last 5 zeroes make this XOR very easy. 100000 XOR 10111 = 110111</p>
+            <h3>Example 3</h3>
+            <p>If the XOR of 'a' and '-' is 'L', what's the XOR of 'L' and 'a'?</p>
+            <p>To solve this problem, we would have to convert the characters to their corresponding character codes, then convert that number to binary. Then, we would take the XOR, convert the binary to decimal, and then convert the character code to the ASCII character.</p>
+            <p>That's... a lot of work. Thankfully, the XOR has a unique property. If a XOR b = c, then a XOR c = b, and b XOR c = a.</p>
+            <p>In this example, we can see that the XOR would just be '-', without having to do any work.</p>
+            <h3>Example 4</h3>
+            <p>Let's do that last example again, but through that long process of actually calculating the XOR.</p>
+            <ol>
+                <li>'L' has a character code of 76. 'a' has a character code of 97.</li>
+                <li>To convert 76 to base 2, divide by 2 repeatedly:<br>
+                    76 / 2 = 38 R 0<br>38 / 2 = 19 R 0<br>19 / 2 = 9 R 1<br>9 / 2 = 4 R 1<br>4 / 2 = 2 R 0<br>2 / 2 = 1 R 0<br>1 / 2 = 0 R 1<br>
+                    The final converted number is 1001100<sub>2</sub>.
+                </li>
+                <li>To convert 97 to base 2, notice that it is 1 more than 96. 96 is an easy number in binary, 32 + 64, so 1100000<sub>2</sub>. Adding 1 is 1100001<sub>2</sub>.</li>
+                <li>The binary XOR is the easiest part: 1001100 XOR 1100001 = 0101101</li>
+                <li>101101<sub>2</sub> = 1 &times; 32 + 1 &times; 8 + 1 &times;4 + 1 = 45.</li>
+                <li>The ASCII character with character code 45 is, as expected, '-'.</li>
+            </ol>
+        </div>
+		</div>
+		
+	</body>
+</html>
