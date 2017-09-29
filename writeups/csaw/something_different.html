@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		
+		<meta charset="utf-8">
+		<title>Something Different (csaw) - PentaHex</title>
+		
+		<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Squada+One" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="/main.css">
+		<link rel="shortcut icon" type="image/png" href="/images/favicon.png"/>
+		
+	</head>
+	<body>
+		
+		<h1>PentaHex</h1>
+		<table style='width:100%;' id="menu">
+			<tr>
+				<td></td>
+				<td style='width:75px'>
+					<a href="/">HOME</a>
+				</td>
+				<td style='width:105px'>
+					<a href="/writeups/">WRITEUPS</a>
+				</td>
+				<td style='width:80px'>
+					<a href="/tools/">TOOLS</a>
+				</td>
+				<td style='width:115px'>
+					<a href="/resources/">RESOURCES</a>
+				</td>
+				<td style='width:110px'>
+					<a href="/tutorials/">TUTORIALS</a>
+				</td>
+				<td style='width:85px'>
+					<a href="/about.html">ABOUT</a>
+				</td>
+				<td></td>
+			</tr>
+		</table>
+		
+		<div id='container1_w'>
+		<div id='container2_w'>
+		
+		<h2>Something Different (50) - Filez</h2>
+		<hr>
+		<p>We are given a txt <a href="/downloads/writeups/polictf/rocksolid.jpg">file</a> and not much else.</p>
+		<hr>
+		<p>My first attempt was to try and find the file on the internet. I searched up a few lines in the file (in quotes) and lo and behold there it was. I downloaded it opened boh files.</p>
+		<p>The challenge name includes the word different, so I tried to see the differences between the original files. I started just with a simple diff command in bash.</p>
+		<p class="code">diff 1.txt 2.txt</p>
+		<p>This gave me:</p>
+		<h5 class="code">
+&lt;    meditation or yoga, as they may appear DEAD even if they are still<br>
+&gt;    meditation or yoda, as they may appear DEAD even if they are still<br>
+500c500<br>
+&lt;    Following is a description of the Cross-Habitat Idiomatic Message<br>
+&gt;    Following is a description of the Cross-Labitat Idiomatic Message<br>
+635c635<br>
+&lt;    ZOO uses to send transcripts to a BARD.  The IMPS protocol number is<br>
+&gt;    ZOO uses to send transcripts wo a BARD.  The IMPS protocol number is</h5>
+		<p>This is only the last part of the output, but I could see that each time a letter was randomly changed. "yoga" to "yoda", "Habitat" to "Labitat", "to" to "wo"</p>
+		<p>From there I wrote a python script to go through each character and output the ones that are different:</p>
+		<p class="code">f1 = open('1.txt','r').read()<br>
+f2 = open('2.txt','r').read()<br>
+output=""<br>
+for i in range(len(f1)):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;if f1[i] != f2[i]:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;output+=f1[i]<br>
+print (output)</p>
+		<p>The first part opens the files and does .read() to convert it to a string. Then it loops through the files at the same time by using the index. It then checks to see if they are different. </p>
+		<h3 class="code">NOTUNICODECOMPATIBLE</h3>
+			
+		</div>
+		</div>
+		
+	</body>
+</html>
