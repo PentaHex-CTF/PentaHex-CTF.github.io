@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		
+		<meta charset="utf-8">
+		<title>hideandpeek.pcap (csaw) - PentaHex</title>
+		
+		<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Squada+One" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="/main.css">
+		<link rel="shortcut icon" type="image/png" href="/images/favicon.png"/>
+		
+	</head>
+	<body>
+		
+		<h1>PentaHex</h1>
+		<table style='width:100%;' id="menu">
+			<tr>
+				<td></td>
+				<td style='width:75px'>
+					<a href="/">HOME</a>
+				</td>
+				<td style='width:105px'>
+					<a href="/writeups/">WRITEUPS</a>
+				</td>
+				<td style='width:80px'>
+					<a href="/tools/">TOOLS</a>
+				</td>
+				<td style='width:115px'>
+					<a href="/resources/">RESOURCES</a>
+				</td>
+				<td style='width:110px'>
+					<a href="/tutorials/">TUTORIALS</a>
+				</td>
+				<td style='width:85px'>
+					<a href="/about.html">ABOUT</a>
+				</td>
+				<td></td>
+			</tr>
+		</table>
+		
+		<div id='container1_w'>
+		<div id='container2_w'>
+		
+		<h2>hideandpeek.pcap (35) - Clearsoc</h2>
+		<hr>
+		<p>This is OwnForAll's second <a href="https://clearsoc.hsf.csaw.io/">dump</a> of some of Herbert's activity, can we use this?</p>
+		<hr>
+		<p>I opened the pcap file in Wireshark and I looked through the types of traffic. I sorted by Protocol and found two in HTTP and that a PNG file was captured.</p>
+		<img src="/downloads/writeups/csaw/wiresharkpng.PNG">
+		<p>From here I attempted a variety of elaborate methods to get the PNG, including to try to recreate the file manually from the data and getting the png from the IP address in browser (it is HTTP after). I finally Googled it and found out that Wireshark has a nifty little feature to do this for us.</p>
+		<img src="/downloads/writeups/csaw/downloadimage.PNG">
+		<p>This brings us to a page where we are able to download the transferred image. Opening it up reveals the flag!</p>
+		<h3 class="code">flag{you_g0t_m3_r3dHand3d!!}</h3>
+		
+		</div>
+		</div>
+		
+	</body>
+</html>

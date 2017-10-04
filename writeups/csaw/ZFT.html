@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		
+		<meta charset="utf-8">
+		<title>ZFT (csaw) - PentaHex</title>
+		
+		<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Squada+One" rel="stylesheet">
+		<link f="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="/main.css">
+		<link rel="shortcut icon" type="image/png" href="/images/favicon.png"/>
+		
+	</head>
+	<body>
+		
+		<h1>PentaHex</h1>
+		<table style='width:100%;' id="menu">
+			<tr>
+				<td></td>
+				<td style='width:75px'>
+					<a href="/">HOME</a>
+				</td>
+				<td style='width:105px'>
+					<a href="/writeups/">WRITEUPS</a>
+				</td>
+				<td style='width:80px'>
+					<a href="/tools/">TOOLS</a>
+				</td>
+				<td style='width:115px'>
+					<a href="/resources/">RESOURCES</a>
+				</td>
+				<td style='width:110px'>
+					<a href="/tutorials/">TUTORIALS</a>
+				</td>
+				<td style='width:85px'>
+					<a href="/about.html">ABOUT</a>
+				</td>
+				<td></td>
+			</tr>
+		</table>
+		
+		<div id='container1_w'>
+		<div id='container2_w'>
+		
+		<h2>ZFT (50) - Crypto</h2>
+		<hr>
+        <p>The problem states: "What kind of megalomaniac writes a manifesto? What is he even trying to say?" Alongside we are given a png <a href="/downloads/writeups/csaw/zft.png" >file</a></p>
+        <hr>
+        <p>At first glance two features popped out at me.</p>
+        <ul>
+			<li>The glowing yellow dots around each character</li>
+			<li>The actual symbols</li>
+		</ul>
+        
+        <p>Due to this CTF problem being placed in a Crypto category I excluded any ideas of stegonagraphy and miscellaneous file configurations. Next I viewed the symbols and nothing could be deduced other than the blue hue each symbol possessed. Nothing came up so I moved onto the yellow dots. At first glance the yellow dots seemed to surround the symbols. I correlated these dots to digits on an analog clock. I logged and submitted the flag. "Incorrect."</p>
+        <p>Another rule of thumb in CTFs is when given an image, search it up on Google. This way the image can be correlated to similar articles online. Google outputted the "best guess" as "fringe glyphs" along with various articles on fandom sites. This was the first <a href="http://fringe.wikia.com/wiki/Glyphs">site</a>.</p>
+        <p>While scrolling down images similar to the png I was given littered the page. Near the bottom a key that linked the glowing dots to the symbols could be found.</p>
+        <img src="/downloads/writeups/csaw/ZFT_cypher.PNG">
+        <p>After being frustrated that the flag wasn't "GUROBLZHFGYVIR", I realized there might be another step. Eventually passing the output through ROT13 provided the flag.</p>
+        <h3>THEBOYMUSTLIVE</h3>		
+			
+		</div>
+		</div>
+		
+	</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		
+		<meta charset="utf-8">
+		<title>Backdoor (csaw) - PentaHex</title>
+		
+		<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Squada+One" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="/main.css">
+		<link rel="shortcut icon" type="image/png" href="/images/favicon.png"/>
+		
+	</head>
+	<body>
+		
+		<h1>PentaHex</h1>
+		<table style='width:100%;' id="menu">
+			<tr>
+				<td></td>
+				<td style='width:75px'>
+					<a href="/">HOME</a>
+				</td>
+				<td style='width:105px'>
+					<a href="/writeups/">WRITEUPS</a>
+				</td>
+				<td style='width:80px'>
+					<a href="/tools/">TOOLS</a>
+				</td>
+				<td style='width:115px'>
+					<a href="/resources/">RESOURCES</a>
+				</td>
+				<td style='width:110px'>
+					<a href="/tutorials/">TUTORIALS</a>
+				</td>
+				<td style='width:85px'>
+					<a href="/about.html">ABOUT</a>
+				</td>
+				<td></td>
+			</tr>
+		</table>
+		
+		<div id='container1_w'>
+		<div id='container2_w'>
+		
+		<h2>Backdoor? (30) - Clearsoc</h2>
+		<hr>
+		<p>The OwnForAll site claims they placed a backdoor on the clearsoc <a href="https://clearsoc.hsf.csaw.io/">site</a>. Can you check and connect to whatever else is running on the clearsoc site?</p>
+		<hr>
+		<p>A backdoor is a port that is open and can be used to access things. I did an nmap scan (in bash) of the site to find all open ports.</p>
+		<p>All the ports, such as 80, 443, and 8080 I recognized, but port 7070 stood out. I used netcat to connect to it, like the problem description stated.</p>
+		<p class="code">nc clearsoc.hsf.csaw.io 7070</p>
+		<p>Yes! The output is the flag!</p>
+		<h3 class="code">flag{that_aint_g0pher}</h3>
+		
+		</div>
+		</div>
+		
+	</body>
+</html>

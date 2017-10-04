@@ -45,7 +45,7 @@
 		
 		<h2>Something Different (50) - Filez</h2>
 		<hr>
-		<p>We are given a txt <a href="/downloads/writeups/polictf/rocksolid.jpg">file</a> and not much else.</p>
+		<p>We are given a 7z <a href="/downloads/writeups/csaw/SomethingDifferent.7z">file</a> which extracts to a txt</p>
 		<hr>
 		<p>My first attempt was to try and find the file on the internet. I searched up a few lines in the file (in quotes) and lo and behold there it was. I downloaded it opened boh files.</p>
 		<p>The challenge name includes the word different, so I tried to see the differences between the original files. I started just with a simple diff command in bash.</p>
@@ -69,8 +69,8 @@ for i in range(len(f1)):<br>
 &nbsp;&nbsp;&nbsp;&nbsp;if f1[i] != f2[i]:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;output+=f1[i]<br>
 print (output)</p>
-		<p>The first part opens the files and does .read() to convert it to a string. Then it loops through the files at the same time by using the index. It then checks to see if they are different. </p>
-		<h3 class="code">NOTUNICODECOMPATIBLE</h3>
+		<p>The first part opens the files and does .read() to convert it to a string. Then it loops through the files at the same time by using the index. It then checks to see if they are different. If it is different, it only outputs the changed one (stored in f1). This outputs: "flag is hidDeninPlaInsIgHt".</p>
+		<h3 class="code">hidDeninPlaInsIgHt</h3>
 			
 		</div>
 		</div>
