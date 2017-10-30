@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+	<meta charset="utf-8">
+	<title>IPs and Ports - PentaHex</title>
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Squada+One" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="/main.css">
+	<link rel="shortcut icon" type="image/png" href="/images/favicon.png" /> </head>
+
+<body>
+	<h1>PentaHex</h1>
+	<table style='width:100%;' id="menu">
+		<tr>
+			<td></td>
+			<td style='width:75px'> <a href="/">HOME</a> </td>
+			<td style='width:105px'> <a href="/writeups/">WRITEUPS</a> </td>
+			<td style='width:80px'> <a href="/tools/">TOOLS</a> </td>
+			<td style='width:115px'> <a href="/resources/">RESOURCES</a> </td>
+			<td style='width:110px'> <a href="/tutorials/">TUTORIALS</a> </td>
+			<td style='width:85px'> <a href="/about.html">ABOUT</a> </td>
+			<td></td>
+		</tr>
+	</table>
+	<div id="container1_w">
+		<div id="container2_w">
+			<h2>IPs and Ports</h2>
+			<p>IPv4 addresses are like house addresses. Imagine the address (12345 Wooden Bluff). Just like when you need to know where to find your friends house, computers also need someway to find each other over the web. IPv4 addresses consist of 4 parts called octets and are separated by periods.</p> <img src="http://www.tmatlantic.com/upload/images/IPv4.JPG">
+			<p>To understand this picture we need to understand how to count in binary. Please refer to our tutorial on that topic located <a href="/tutorials/numberbases.html">here</a>. Each section of the address can hold a maximum value of 255. This allows for a total of 256 <sup>4</sup> = 4,294,967,296 unique addresses.</p>
+			<h3>Networks</h3>
+			<p>Now that we can think of IP addresses to be just like home addresses lets take it a step further. You may often hear of people using the term "router." A router is nothing more than a gatekeeper, as in it is like your front door. You keep it locked and only allow people you want in or disallow the ones you want out. The router acts as the door to your house and also displays your unique IP address.</p> <img src="https://img1.etsystatic.com/030/0/5261051/il_340x270.598694171_mjky.jpg">
+			<p>Now lets imagine we entered the house and on first inspection could see a bunch of rooms. Similarly devices inside the routers network each have their own "room" and only communicate through exiting the "door." Previously when I mentioned how many total unique addresses could exist in an IPv4 address you may have wondered "I thought more than 4 billion devices existed?" You would be right and to cut down on IPv4 addresses a few protocols were developed, most commonly NAT. NAT allows a network to use a single address on its router and have each device inside use an address available only within the network.</p>
+			<h3>Ports</h3>
+			<p>Finally we need to take a look at each individual device and how they operate using "ports." Imagine your room, full of cabinets and drawers. To access each compartment you need to open them directly. Ports within each device allow for the network to access different applications. You may have also heard of "firewalls." While there are no walls of fire in your computer these applications are essential for automating the protection of your device from devious people.</p> <img src="https://www.tunnelsup.com/images/firewall1.png"> </div>
+	</div>
+</body>
+
+</html>
+
+

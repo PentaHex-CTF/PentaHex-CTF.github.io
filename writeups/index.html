@@ -5,15 +5,38 @@
 		<meta charset="utf-8">
 		<title>Writeups - PentaHex</title>
 		
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Squada+One" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="/main.css">
 		<link rel="shortcut icon" type="image/png" href="/images/favicon.png"/>
-		
+		<script>
+		function filterText() {
+			// Declare variables 
+			var input, filter, table, tr, td, i, index;
+			// get input, find table values
+			input = document.getElementById("search");
+			filter = input.value.toUpperCase();
+			table = document.getElementById("content");
+			tr = table.getElementsByTagName("tbody")[0].getElementsByTagName("tr"); // get each row from the tbody
+			// loop through all table rows
+			for (i = 0; i < tr.length; i++) {
+				// get all columns
+				td = tr[i].getElementsByTagName("td")[0].innerHTML + ";" + tr[i].getElementsByTagName("td")[1].innerHTML + ";" + tr[i].getElementsByTagName("td")[2].innerHTML;
+				// if it exists
+				if (td) {
+					if (td.toUpperCase().indexOf(filter) > -1) { // CAN find filter
+						index = td.toUpperCase().indexOf(filter);
+						tr[i].style.display = ""; // display is default
+					} else {
+						tr[i].style.display = "none"; // don't display
+					}
+				}
+			}
+		}
+	</script>
 	</head>
-	<body>
+	<body onload="setInterval(filterText, 500);">
 		
 		<h1>PentaHex</h1>
 		<table style='width:100%;' id="menu">
@@ -90,16 +113,5 @@
 			</div>
 		</div>
 		
-		<script>
-var $rows = $('#content tbody tr');
-$('#search').keyup(function() {
-    var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
-    
-    $rows.show().filter(function() {
-        var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
-        return !~text.indexOf(val);
-    }).hide();
-});		
-		</script>
 	</body>
 </html>

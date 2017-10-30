@@ -1,96 +1,95 @@
 <!DOCTYPE html>
 <html lang="en-US">
-	<head>
-		
-		<meta charset="utf-8">
-		<title>Tutorials - PentaHex</title>
-		
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Squada+One" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
-		<link rel="stylesheet" type="text/css" href="/main.css">
-		<link rel="shortcut icon" type="image/png" href="/images/favicon.png"/>
-		
-	</head>
-	<body>
-		
-		<h1>PentaHex</h1>
-		<table style='width:100%;' id="menu">
-			<tr>
-				<td></td>
-				<td style='width:75px'>
-					<a href="/">HOME</a>
-				</td>
-				<td style='width:105px'>
-					<a href="/writeups/">WRITEUPS</a>
-				</td>
-				<td style='width:80px'>
-					<a href="/tools/">TOOLS</a>
-				</td>
-				<td style='width:115px'>
-					<a href="/resources/">RESOURCES</a>
-				</td>
-				<td style='width:110px'>
-					<a href="/tutorials/">TUTORIALS</a>
-				</td>
-				<td style='width:85px'>
-					<a href="/about.html">ABOUT</a>
-				</td>
-				<td></td>
-			</tr>
-		</table>
-		
-		<div id="container1">
-			<div id="container2">
-		<input style="align:left;margin-bottom:10px;padding:3px;" type="text" id="search" placeholder="Type to search">
-				<br>
-		<table id="content">
-			
-			<thead>
-				<tr>
-					<th>Topic</th>
-					<th>Description</th>
-					<th>Level</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td><a href="/tutorials/numberbases.html">Number Bases</a></td>
-					<td>Overview of the different bases of numbers and how to convert between them</td>
-					<td>Basic</td>
-				</tr>
-				<tr>
-					<td><a href="/tutorials/charcodes.html">Character Codes</a></td>
-					<td>ASCII character codes and how to use them to write strings numerically</td>
-					<td>Basic</td>
-				</tr>
-				<tr>
-					<td><a href="/tutorials/xor.html">XOR</a></td>
-					<td>Goes through XOR operation and logic</td>
-					<td>Basic</td>
-				</tr>
-				<tr>
-					<td><a href="/tutorials/diffiehellman.html">Diffie-Hellman Key Exchange</a></td>
-					<td>Goes through Diffie-Hellman algorithm with examples</td>
-					<td>Intermediate</td>
-				</tr>
-			</tbody>
-		</table>
-			</div>
+
+<head>
+	<meta charset="utf-8">
+	<title>Tutorials - PentaHex</title>
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Squada+One" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="/main.css">
+	<link rel="shortcut icon" type="image/png" href="/images/favicon.png" />
+	<script>
+		function filterText() {
+			// Declare variables 
+			var input, filter, table, tr, td, i, index;
+			// get input, find table values
+			input = document.getElementById("search");
+			filter = input.value.toUpperCase();
+			table = document.getElementById("content");
+			tr = table.getElementsByTagName("tbody")[0].getElementsByTagName("tr"); // get each row from the tbody
+			// loop through all table rows
+			for (i = 0; i < tr.length; i++) {
+				// get all columns
+				td = tr[i].getElementsByTagName("td")[0].innerHTML + ";" + tr[i].getElementsByTagName("td")[1].innerHTML + ";" + tr[i].getElementsByTagName("td")[2].innerHTML;
+				// if it exists
+				if (td) {
+					if (td.toUpperCase().indexOf(filter) > -1) { // CAN find filter
+						index = td.toUpperCase().indexOf(filter);
+						tr[i].style.display = ""; // display is default
+					} else {
+						tr[i].style.display = "none"; // don't display
+					}
+				}
+			}
+		}
+	</script>
+</head>
+
+<body onload="setInterval(filterText, 500);">
+	<h1>PentaHex</h1>
+	<table style='width:100%;' id="menu">
+		<tr>
+			<td></td>
+			<td style='width:75px'> <a href="/">HOME</a> </td>
+			<td style='width:105px'> <a href="/writeups/">WRITEUPS</a> </td>
+			<td style='width:80px'> <a href="/tools/">TOOLS</a> </td>
+			<td style='width:115px'> <a href="/resources/">RESOURCES</a> </td>
+			<td style='width:110px'> <a href="/tutorials/">TUTORIALS</a> </td>
+			<td style='width:85px'> <a href="/about.html">ABOUT</a> </td>
+			<td></td>
+		</tr>
+	</table>
+	<div id="container1">
+		<div id="container2"> <input style="align:left;margin-bottom:10px;padding:3px;" type="text" id="search" placeholder="Type to search"> <br>
+			<table id="content">
+				<thead>
+					<tr>
+						<th>Topic</th>
+						<th>Description</th>
+						<th>Level</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><a href="/tutorials/charcodes.html">Character Codes</a></td>
+						<td>ASCII character codes and how to use them to write strings numerically</td>
+						<td>Basic</td>
+					</tr>
+					<tr>
+						<td><a href="/tutorials/ip_ports.html">IPs and Ports</a></td>
+						<td>Networking basics such as IPv4 addresses, networks, and ports, and how they connect.</td>
+						<td>Basic</td>
+					</tr>
+					<tr>
+						<td><a href="/tutorials/numberbases.html">Number Bases</a></td>
+						<td>Overview of the different bases of numbers and how to convert between them</td>
+						<td>Basic</td>
+					</tr>
+					<tr>
+						<td><a href="/tutorials/xor.html">XOR</a></td>
+						<td>Goes through XOR operation and logic</td>
+						<td>Basic</td>
+					</tr>
+					<tr>
+						<td><a href="/tutorials/diffiehellman.html">Diffie-Hellman Key Exchange</a></td>
+						<td>Goes through Diffie-Hellman algorithm with examples</td>
+						<td>Intermediate</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
-		
-		<script>
-var $rows = $('#content tbody tr');
-$('#search').keyup(function() {
-    var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
-    
-    $rows.show().filter(function() {
-        var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
-        return !~text.indexOf(val);
-    }).hide();
-});		
-		</script>
-		
-	</body>
+	</div>
+</body>
+
 </html>

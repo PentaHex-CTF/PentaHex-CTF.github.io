@@ -1,107 +1,105 @@
 <!DOCTYPE html>
 <html lang="en-US">
-	<head>
-		
-		<meta charset="utf-8">
-		<title>Tools - PentaHex</title>
-		
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Squada+One" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
-		<link rel="stylesheet" type="text/css" href="/main.css">
-		<link rel="shortcut icon" type="image/png" href="/images/favicon.png"/>
-		
-	</head>
-	<body>
-		
-		<h1>PentaHex</h1>
-		<table style='width:100%;' id="menu">
-			<tr>
-				<td></td>
-				<td style='width:75px'>
-					<a href="/">HOME</a>
-				</td>
-				<td style='width:105px'>
-					<a href="/writeups/">WRITEUPS</a>
-				</td>
-				<td style='width:80px'>
-					<a href="/tools/">TOOLS</a>
-				</td>
-				<td style='width:115px'>
-					<a href="/resources/">RESOURCES</a>
-				</td>
-				<td style='width:110px'>
-					<a href="/tutorials/">TUTORIALS</a>
-				</td>
-				<td style='width:85px'>
-					<a href="/about.html">ABOUT</a>
-				</td>
-				<td></td>
-			</tr>
-		</table>
-		
-		<div id="container1">
-			<div id="container2">
-		<input style="align:left;margin-bottom:10px;padding:3px;" type="text" id="search" placeholder="Type to search">
-				<br>
-		<table id="content">
-			
-			<thead>
-				<tr>
-					<th>Tool</th>
-					<th>Use</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td><a href="/tools/caesar.html">Caesar cipher</a></td>
-					<td>Brute forces all 26 options for the Caesar cipher</td>
-				</tr>
-				<tr>
-					<td><a href="/tools/affine.html">Affine cipher</a></td>
-					<td>Goes through all 312 options for the Affine Cipher</td>
-				</tr>
-				<tr>
-					<td><a href="/tools/atbash.html">Atbash cipher</a></td>
-					<td>Reverses the alphabet on a string</td>
-				</tr>
-				<tr>
-					<td><a href="/tools/base64.html">Base64</a></td>
-					<td>Encode and decode base64 quickly</td>
-				</tr>
-				<tr>
-					<td><a href="/tools/baseconverter.html">Base Converter</a></td>
-					<td>Convert numbers between any bases</td>
-				</tr>
-				<tr>
-					<td><a href="/tools/asciibase.html">ASCII / Base Converter</a></td>
-					<td>Efficiently convert bases 2,4,8,10,16,64 and text</td>
-				</tr>
-				<tr>
-					<td><a href="/tools/xor.html">XOR Calculator</a></td>
-					<td>Calculate the XOR of numbers (base 2,10,16) or text.</td>
-				</tr>
-				<tr>
-					<td><a href="/tools/xorfinder.html">XOR Finder</a></td>
-					<td>Brute forces a small XOR (sub 3 bytes) and supports filters.</td>
-				</tr>
-			</tbody>
-		</table>
-			</div>
+
+<head>
+	<meta charset="utf-8">
+	<title>Tools - PentaHex</title>
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Squada+One" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="/main.css">
+	<link rel="shortcut icon" type="image/png" href="/images/favicon.png" />
+	<script>
+		function filterText() {
+			// Declare variables 
+			var input, filter, table, tr, td, i, index;
+			// get input, find table values
+			input = document.getElementById("search");
+			if (input != "") {
+				filter = input.value.toUpperCase();
+				table = document.getElementById("content");
+				tr = table.getElementsByTagName("tbody")[0].getElementsByTagName("tr"); // get each row from the tbody
+				// loop through all table rows
+				for (i = 0; i < tr.length; i++) {
+					// get all columns
+					td = tr[i].getElementsByTagName("td")[0].innerHTML + ";" + tr[i].getElementsByTagName("td")[1].innerHTML
+					// if it exists
+					if (td) {
+						if (td.toUpperCase().indexOf(filter) > -1) { // CAN find filter
+							index = td.toUpperCase().indexOf(filter);
+							tr[i].style.display = ""; // display is default
+						} else {
+							tr[i].style.display = "none"; // don't display
+						}
+					}
+				}
+			}
+		}
+	</script>
+</head>
+
+<body onload="setInterval(filterText, 500);">
+	<h1>PentaHex</h1>
+	<table style='width:100%;' id="menu">
+		<tr>
+			<td></td>
+			<td style='width:75px'> <a href="/">HOME</a> </td>
+			<td style='width:105px'> <a href="/writeups/">WRITEUPS</a> </td>
+			<td style='width:80px'> <a href="/tools/">TOOLS</a> </td>
+			<td style='width:115px'> <a href="/resources/">RESOURCES</a> </td>
+			<td style='width:110px'> <a href="/tutorials/">TUTORIALS</a> </td>
+			<td style='width:85px'> <a href="/about.html">ABOUT</a> </td>
+			<td></td>
+		</tr>
+	</table>
+	<div id="container1">
+		<div id="container2"> <input style="align:left;margin-bottom:10px;padding:3px;" type="text" id="search" placeholder="Type to search"> <br>
+			<table id="content">
+				<thead>
+					<tr>
+						<th>Tool</th>
+						<th>Use</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><a href="/tools/caesar.html">Caesar cipher</a></td>
+						<td>Brute forces all 26 options for the Caesar cipher</td>
+					</tr>
+					<tr>
+						<td><a href="/tools/affine.html">Affine cipher</a></td>
+						<td>Goes through all 312 options for the Affine Cipher</td>
+					</tr>
+					<tr>
+						<td><a href="/tools/atbash.html">Atbash cipher</a></td>
+						<td>Reverses the alphabet on a string</td>
+					</tr>
+					<tr>
+						<td><a href="/tools/base64.html">Base64</a></td>
+						<td>Encode and decode base64 quickly</td>
+					</tr>
+					<tr>
+						<td><a href="/tools/baseconverter.html">Base Converter</a></td>
+						<td>Convert numbers between any bases</td>
+					</tr>
+					<tr>
+						<td><a href="/tools/asciibase.html">ASCII / Base Converter</a></td>
+						<td>Efficiently convert bases 2,4,8,10,16,64 and text</td>
+					</tr>
+					<tr>
+						<td><a href="/tools/xor.html">XOR Calculator</a></td>
+						<td>Calculate the XOR of numbers (base 2,10,16) or text.</td>
+					</tr>
+					<tr>
+						<td><a href="/tools/xorfinder.html">XOR Finder</a></td>
+						<td>Brute forces a small XOR (sub 3 bytes) and supports filters.</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
-		
-		<script>
-var $rows = $('#content tbody tr');
-$('#search').keyup(function() {
-    var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
-    
-    $rows.show().filter(function() {
-        var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
-        return !~text.indexOf(val);
-    }).hide();
-});	
-		</script>
-	</body>
+	</div>
+</body>
+
 </html>
+
 
